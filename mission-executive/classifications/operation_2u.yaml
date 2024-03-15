@@ -1,0 +1,18 @@
+Action:
+  HoverAction:
+    - id: 1
+      type: observer_precondition
+    - id: 2
+      type: default_observer
+    - id: 3
+      type: default_terminal
+    - id: 4
+      type: observer_precondition
+    - id: 5
+      type: observer_and_terminal_subject
+    - id: 6
+      type: singleton_subject
+Asset:
+  Hummingbird:
+    - id: 1
+      type: primary_asset

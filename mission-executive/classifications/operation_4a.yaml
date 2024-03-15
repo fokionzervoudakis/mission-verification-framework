@@ -1,0 +1,11 @@
+Action:
+  TraversePathSegmentAction:
+    - id: 1
+      type: default
+    - id: 2
+      type: default
+    - id: 4
+      type: default_terminal
+  HoverAction:
+    - id: 3
+      type: default

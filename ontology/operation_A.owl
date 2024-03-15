@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/ontologies/operation_A.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.semanticweb.org/ontologies/operation_A.owl">
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://www.semanticweb.org/ontologies/complex_tactical_missions.owl</Import>
+    <Declaration>
+        <NamedIndividual IRI="#Hummingbird1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Hummingbird2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PhotoSurveillanceAction5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ThreatArea1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#TraversePathSegmentAction1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#TraversePathSegmentAction2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#TraversePathSegmentAction3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#TraversePathSegmentAction4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Waypoint1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Waypoint2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Waypoint3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Waypoint4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Waypoint5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Waypoint6"/>
+    </Declaration>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Hummingbird"/>
+        <NamedIndividual IRI="#Hummingbird1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Hummingbird"/>
+        <NamedIndividual IRI="#Hummingbird2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#PhotoSurveillanceAction"/>
+        <NamedIndividual IRI="#PhotoSurveillanceAction5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_tactical_missions.owl#ThreatArea"/>
+        <NamedIndividual IRI="#ThreatArea1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#TraversePathSegmentAction"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#TraversePathSegmentAction"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#TraversePathSegmentAction"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#TraversePathSegmentAction"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Waypoint"/>
+        <NamedIndividual IRI="#Waypoint1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Waypoint"/>
+        <NamedIndividual IRI="#Waypoint2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Waypoint"/>
+        <NamedIndividual IRI="#Waypoint3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Waypoint"/>
+        <NamedIndividual IRI="#Waypoint4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Waypoint"/>
+        <NamedIndividual IRI="#Waypoint5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Waypoint"/>
+        <NamedIndividual IRI="#Waypoint6"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+        <NamedIndividual IRI="#Hummingbird1"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+        <NamedIndividual IRI="#Hummingbird1"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+        <NamedIndividual IRI="#Hummingbird2"/>
+        <NamedIndividual IRI="#PhotoSurveillanceAction5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+        <NamedIndividual IRI="#Hummingbird2"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+        <NamedIndividual IRI="#Hummingbird2"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+        <NamedIndividual IRI="#PhotoSurveillanceAction5"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasWaypoint"/>
+        <NamedIndividual IRI="#ThreatArea1"/>
+        <NamedIndividual IRI="#Waypoint6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasEndpoint"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction1"/>
+        <NamedIndividual IRI="#Waypoint2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasStartPoint"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction1"/>
+        <NamedIndividual IRI="#Waypoint1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasEndpoint"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction2"/>
+        <NamedIndividual IRI="#Waypoint3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction2"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction2"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasStartPoint"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction2"/>
+        <NamedIndividual IRI="#Waypoint2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasEndpoint"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction3"/>
+        <NamedIndividual IRI="#Waypoint5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasStartPoint"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction3"/>
+        <NamedIndividual IRI="#Waypoint4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasEndpoint"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction4"/>
+        <NamedIndividual IRI="#Waypoint6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction4"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasStartPoint"/>
+        <NamedIndividual IRI="#TraversePathSegmentAction4"/>
+        <NamedIndividual IRI="#Waypoint5"/>
+    </ObjectPropertyAssertion>
+</Ontology>
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->

@@ -1,0 +1,9 @@
+Action:
+  HoverAction:
+    - id: 1
+      duration: 69
+      coordinates: [-112.1334152514208, 36.08362433106716]
+Asset:
+  ARDrone:
+    - id: 1
+      actions: [1]

@@ -1,0 +1,8 @@
+Action:
+  HoverAction:
+    - id: 1
+      type: default
+    - id: 2
+      type: default
+    - id: 3
+      type: default_terminal

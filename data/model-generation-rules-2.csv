@@ -1,0 +1,19 @@
+,,DTMC asset module,,PCTL
+class ID,class description,action_id,last_action_id,property id
+c1,default,action.id,,
+c2,default_singleton,action.id,null,action.id
+c3,default_terminal,action.id,null,action.id
+c4,subject_precondition,primary_asset.id,,
+c5,observer_precondition,primary_asset.id,,
+c6,constrained_subject,primary_asset.id,,
+c7,leading_subject,action.id,,
+c8,singleton_subject,primary_asset.id,primary_asset.id,
+c9,terminal_subject,primary_asset.id,primary_asset.id,
+c10,default_observer,action.id,,
+c11,terminal_observer,action.id,null,action.id
+c12,terminal_constrained_observer,asset.id,asset.id,action.id
+c13,observer_and_constrained_subject,primary_asset.id,,
+c14,observer_and_singleton_subject,primary_asset.id,primary_asset.id,
+c15,observer_and_terminal_subject,primary_asset.id,primary_asset.id,
+c16,subject_constraint,primary_asset.id,,
+c17,terminal_subject_constraint,primary_asset.id,primary_asset.id,action.id

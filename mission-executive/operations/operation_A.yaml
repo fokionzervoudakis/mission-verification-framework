@@ -1,0 +1,26 @@
+Action:
+  TraversePathSegmentAction:
+    - id: 1
+      duration: 60
+      coordinates: [-118.2701676452105, 34.04571691582468, -118.2727912250708, 34.04283777672801]
+    - id: 2
+      duration: 60
+      coordinates: [-118.2738976905231, 34.03928177311901]
+      preconditions: [1, 3]
+    - id: 3
+      duration: 60
+      coordinates: [-118.2648197314705, 34.03331851688904, -118.2738273041029, 34.03823567425125]
+    - id: 4
+      duration: 60
+      coordinates: [-118.2820372512224, 34.03759698276219]
+      preconditions: [3]
+  PhotoSurveillanceAction:
+    - id: 5
+      duration: 50
+      preconditions: [3]
+Asset:
+  Hummingbird:
+    - id: 1
+      actions: [1, 2]
+    - id: 2
+      actions: [3, 4, 5]

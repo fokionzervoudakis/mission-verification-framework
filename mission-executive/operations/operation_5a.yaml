@@ -1,0 +1,23 @@
+Action:
+  HoverAction:
+    - id: 1
+      duration: 30
+    - id: 3
+      duration: 30
+      preconditions: [2]
+  TraversePathSegmentAction:
+    - id: 2
+      duration: 30
+      coordinates: [-118.2738988072612, 34.03893526262756, -118.2710020707466, 34.03699573489515]
+      preconditions: [1]
+  LidarAction:
+    - id: 4
+      interval: 5
+      concurrencies: [1]
+    - id: 5
+      interval: 5
+      concurrencies: [3]
+Asset:
+  Hummingbird:
+    - id: 1
+      actions: [1, 2, 3]

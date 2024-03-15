@@ -1,0 +1,529 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/ontologies/classification_rules.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.semanticweb.org/ontologies/classification_rules.owl">
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://www.semanticweb.org/ontologies/complex_missions.owl</Import>
+    <Declaration>
+        <Class IRI="#ConstrainedObserver"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ConstrainedSubject"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ObservedAsset"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Observer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ObserverAndConstrainedSubject"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ObserverAndSingletonSubject"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ObserverAndSubject"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ObserverAsset"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ObserverPrecondition"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SiblingObserver"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SingleActionAsset"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Singleton"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SingletonSubject"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Subject"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SubjectConstraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SubjectPrecondition"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ZeroActionAsset"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#observes"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#ConstrainedSubject"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Subject"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#isPreconditionTo"/>
+                <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ObservedAsset"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Class IRI="#Subject"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ObserverAndConstrainedSubject"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#ConstrainedSubject"/>
+            <Class IRI="#Observer"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ObserverAndSingletonSubject"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Observer"/>
+            <Class IRI="#SingletonSubject"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ObserverAndSubject"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Observer"/>
+            <Class IRI="#Subject"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ObserverAsset"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Class IRI="#Observer"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#SingleActionAsset"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+            </ObjectExactCardinality>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Singleton"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#isActionOf"/>
+                <Class IRI="#SingleActionAsset"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#SingletonSubject"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Singleton"/>
+            <Class IRI="#Subject"/>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ZeroActionAsset"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+            <ObjectExactCardinality cardinality="0">
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+            </ObjectExactCardinality>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#ConstrainedObserver"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Observer"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ObserverPrecondition"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SiblingObserver"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Subject"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SubjectConstraint"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SubjectPrecondition"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+    </SubClassOf>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#observes"/>
+    </AsymmetricObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#observes"/>
+    </IrreflexiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#observes"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#observes"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+    </ObjectPropertyRange>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#ConstrainedSubject"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#SubjectConstraint"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#ConstrainedSubject"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#b"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <DifferentIndividualsAtom>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#b"/>
+            </DifferentIndividualsAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#ConstrainedObserver"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#Observer"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#ObserverPrecondition"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#ObserverPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#ObserverPrecondition"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#Subject"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#SubjectPrecondition"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#SubjectConstraint"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#SubjectConstraint"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#SubjectPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#SubjectPrecondition"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#SiblingObserver"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#b"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <DifferentIndividualsAtom>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#b"/>
+            </DifferentIndividualsAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#Observer"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#b"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <DifferentIndividualsAtom>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#b"/>
+            </DifferentIndividualsAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="#Subject"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#b"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasPrecondition"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <DifferentIndividualsAtom>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#b"/>
+            </DifferentIndividualsAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#observes"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#b"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+</Ontology>
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+    <name>operation_5a.kml</name>
+    <Folder>
+        <name>Action</name>
+        <Folder>
+            <name>KineticAction</name>
+            <Folder>
+                <name>HoverAction</name>
+                <Placemark>
+                    <name>1</name>
+                    <Point>
+                        <coordinates>-118.2738988072612,34.03893526262756,0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark>
+                    <name>3</name>
+                    <Point>
+                        <coordinates>-118.2710020707466,34.03699573489515,0</coordinates>
+                    </Point>
+                </Placemark>
+            </Folder>
+            <Folder>
+                <name>TraversePathSegmentAction</name>
+                <Placemark>
+                    <name>2</name>
+                    <LineString>
+                        <coordinates>
+                            -118.2738988072612,34.03893526262756,0
+                            -118.2710020707466,34.03699573489515,0
+                        </coordinates>
+                    </LineString>
+                </Placemark>
+            </Folder>
+        </Folder>
+    </Folder>
+</Document>
+</kml>

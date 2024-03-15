@@ -1,0 +1,23 @@
+Action:
+  HoverAction:
+    - id: 1
+      duration: 40
+      coordinates: [-112.1334152514208, 36.08362433106716]
+    - id: 2
+      duration: 29
+      preconditions: [1, 3, 4]
+    - id: 3
+      duration: 40
+      coordinates: [-112.1199316051625, 36.07823185748754]
+    - id: 4
+      duration: 40
+      coordinates: [-112.1075818315498, 36.08838518690878]
+Asset:
+  ARDrone:
+    - id: 1
+      actions: [1, 2]
+  Hummingbird:
+    - id: 2
+      actions: [3]
+    - id: 3
+      actions: [4]

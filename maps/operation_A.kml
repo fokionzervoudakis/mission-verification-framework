@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+    <name>operation_A.kml</name>
+    <Folder>
+        <name>Action</name>
+        <Folder>
+            <name>KineticAction</name>
+            <Folder>
+                <name>TraversePathSegmentAction</name>
+                <Placemark>
+                    <name>1</name>
+                    <LineString>
+                        <coordinates>
+                            -118.2701676452105,34.04571691582468,0
+                            -118.2727912250708,34.04283777672801,0
+                        </coordinates>
+                    </LineString>
+                </Placemark>
+                <Placemark>
+                    <name>2</name>
+                    <LineString>
+                        <coordinates>
+                            -118.2727912250708,34.04283777672801,0
+                            -118.2738976905231,34.03928177311901,0
+                        </coordinates>
+                    </LineString>
+                </Placemark>
+                <Placemark>
+                    <name>3</name>
+                    <LineString>
+                        <coordinates>
+                            -118.2648197314705,34.03331851688904,0
+                            -118.2738273041029,34.03823567425125,0
+                        </coordinates>
+                    </LineString>
+                </Placemark>
+                <Placemark>
+                    <name>4</name>
+                    <LineString>
+                        <coordinates>
+                            -118.2738273041029,34.03823567425125,0
+                            -118.2820372512224,34.03759698276219,0
+                        </coordinates>
+                    </LineString>
+                </Placemark>
+            </Folder>
+        </Folder>
+    </Folder>
+</Document>
+</kml>

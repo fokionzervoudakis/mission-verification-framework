@@ -1,0 +1,25 @@
+Action:
+  HoverAction:
+    - id: 1
+      duration: 40
+      coordinates: [-112.1334152514208, 36.08362433106716]
+    - id: 2
+      duration: 40
+      preconditions: [1]
+    - id: 3
+      duration: 39
+      preconditions: [2, 4]
+    - id: 4
+      duration: 41 # point of failure
+      preconditions: [1]
+      coordinates: [-112.1199316051625, 36.07823185748754]
+    - id: 5
+      duration: 29
+      preconditions: [4]
+Asset:
+  Hummingbird:
+    - id: 1
+      actions: [1, 2, 3]
+  ARDrone:
+    - id: 2
+      actions: [4, 5]

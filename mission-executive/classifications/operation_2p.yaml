@@ -1,0 +1,18 @@
+Action:
+  HoverAction:
+    - id: 1
+      type: observer_precondition
+    - id: 2
+      type: observer_precondition
+    - id: 3
+      type: terminal_constrained_observer
+    - id: 4
+      type: constrained_subject
+    - id: 5
+      type: subject_constraint
+    - id: 6
+      type: terminal_subject_constraint
+Asset:
+  Hummingbird:
+    - id: 1
+      type: primary_asset

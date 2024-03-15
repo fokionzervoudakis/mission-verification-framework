@@ -1,0 +1,650 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/ontologies/complex_traffic_surveillance_missions.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.semanticweb.org/ontologies/complex_traffic_surveillance_missions.owl">
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://www.semanticweb.org/ontologies/complex_missions.owl</Import>
+    <Declaration>
+        <Class IRI="#DomainConcept"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FreewaySection"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HighRampFrequency"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HighSpeedFreewaySection"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HighSpeedLidarAction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IntervalCalibrationFactor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LaneClassification"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LidarAction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowRampFrequency"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowSpeedFreewaySection"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowSpeedLidarAction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RampFrequency"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Road"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ThreeLaneClassification"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TwoLaneClassification"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ValuePartition"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasIntervalCalibrationFactor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasLaneClassification"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasRampFrequency"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isConcurrentWith"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#monitors"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#approachesMinimumSpeed"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#exceedsMinimumSpeed"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#exceedsNominalSpeed"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasDoubleValue"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasIntegerValue"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasIntervalInSeconds"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#HighIntervalCalibrationFactor"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LowIntervalCalibrationFactor"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#HighSpeedFreewaySection"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#FreewaySection"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasLaneClassification"/>
+                <Class IRI="#ThreeLaneClassification"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRampFrequency"/>
+                <Class IRI="#LowRampFrequency"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#HighSpeedLidarAction"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#LidarAction"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#monitors"/>
+                <Class IRI="#HighSpeedFreewaySection"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#IntervalCalibrationFactor"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#DomainConcept"/>
+            <ObjectOneOf>
+                <NamedIndividual IRI="#HighIntervalCalibrationFactor"/>
+                <NamedIndividual IRI="#LowIntervalCalibrationFactor"/>
+            </ObjectOneOf>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LaneClassification"/>
+        <ObjectUnionOf>
+            <Class IRI="#ThreeLaneClassification"/>
+            <Class IRI="#TwoLaneClassification"/>
+        </ObjectUnionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LowSpeedFreewaySection"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#FreewaySection"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasLaneClassification"/>
+                <Class IRI="#TwoLaneClassification"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasRampFrequency"/>
+                <Class IRI="#HighRampFrequency"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LowSpeedLidarAction"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#LidarAction"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#monitors"/>
+                <Class IRI="#LowSpeedFreewaySection"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#RampFrequency"/>
+        <ObjectUnionOf>
+            <Class IRI="#HighRampFrequency"/>
+            <Class IRI="#LowRampFrequency"/>
+        </ObjectUnionOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#FreewaySection"/>
+        <Class IRI="#Road"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FreewaySection"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasLaneClassification"/>
+            <Class IRI="#LaneClassification"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FreewaySection"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasRampFrequency"/>
+            <Class IRI="#RampFrequency"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FreewaySection"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#approachesMinimumSpeed"/>
+            <Datatype abbreviatedIRI="xsd:double"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FreewaySection"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#exceedsMinimumSpeed"/>
+            <Datatype abbreviatedIRI="xsd:double"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FreewaySection"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#exceedsNominalSpeed"/>
+            <Datatype abbreviatedIRI="xsd:double"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighRampFrequency"/>
+        <Class IRI="#RampFrequency"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighSpeedFreewaySection"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#approachesMinimumSpeed"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:double"/>
+                <FacetRestriction facet="&xsd;minInclusive">
+                    <Literal datatypeIRI="&xsd;double">0.2</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighSpeedFreewaySection"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#exceedsMinimumSpeed"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:double"/>
+                <FacetRestriction facet="&xsd;minInclusive">
+                    <Literal datatypeIRI="&xsd;double">0.9</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighSpeedFreewaySection"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#exceedsNominalSpeed"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:double"/>
+                <FacetRestriction facet="&xsd;minInclusive">
+                    <Literal datatypeIRI="&xsd;double">0.5</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighSpeedLidarAction"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#hasIntervalCalibrationFactor"/>
+            <NamedIndividual IRI="#HighIntervalCalibrationFactor"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LaneClassification"/>
+        <Class IRI="#ValuePartition"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LidarAction"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#SensorAction"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LidarAction"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasIntervalCalibrationFactor"/>
+            <Class IRI="#IntervalCalibrationFactor"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LidarAction"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isConcurrentWith"/>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#HoverAction"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LidarAction"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasIntervalInSeconds"/>
+            <Datatype abbreviatedIRI="xsd:integer"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowRampFrequency"/>
+        <Class IRI="#RampFrequency"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowSpeedFreewaySection"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#approachesMinimumSpeed"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:double"/>
+                <FacetRestriction facet="&xsd;minInclusive">
+                    <Literal datatypeIRI="&xsd;double">0.3</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowSpeedFreewaySection"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#exceedsMinimumSpeed"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:double"/>
+                <FacetRestriction facet="&xsd;minInclusive">
+                    <Literal datatypeIRI="&xsd;double">0.7</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowSpeedFreewaySection"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#exceedsNominalSpeed"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:double"/>
+                <FacetRestriction facet="&xsd;minInclusive">
+                    <Literal datatypeIRI="&xsd;double">0.4</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowSpeedLidarAction"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#hasIntervalCalibrationFactor"/>
+            <NamedIndividual IRI="#LowIntervalCalibrationFactor"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RampFrequency"/>
+        <Class IRI="#ValuePartition"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Road"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasWaypoint"/>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Waypoint"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ThreeLaneClassification"/>
+        <Class IRI="#LaneClassification"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TwoLaneClassification"/>
+        <Class IRI="#LaneClassification"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Area"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Mission"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Waypoint"/>
+        <Class IRI="#DomainConcept"/>
+        <Class IRI="#Road"/>
+        <Class IRI="#ValuePartition"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#PhotoSurveillanceAction"/>
+        <Class IRI="#LidarAction"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#HighRampFrequency"/>
+        <Class IRI="#LowRampFrequency"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#HighSpeedFreewaySection"/>
+        <Class IRI="#LowSpeedFreewaySection"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#HighSpeedLidarAction"/>
+        <Class IRI="#LowSpeedLidarAction"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#LaneClassification"/>
+        <Class IRI="#RampFrequency"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ThreeLaneClassification"/>
+        <Class IRI="#TwoLaneClassification"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#IntervalCalibrationFactor"/>
+        <NamedIndividual IRI="#HighIntervalCalibrationFactor"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#IntervalCalibrationFactor"/>
+        <NamedIndividual IRI="#LowIntervalCalibrationFactor"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasIntegerValue"/>
+        <NamedIndividual IRI="#HighIntervalCalibrationFactor"/>
+        <Literal datatypeIRI="&xsd;integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasIntegerValue"/>
+        <NamedIndividual IRI="#LowIntervalCalibrationFactor"/>
+        <Literal datatypeIRI="&xsd;integer">2</Literal>
+    </DataPropertyAssertion>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasIntervalCalibrationFactor"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasLaneClassification"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasRampFrequency"/>
+    </FunctionalObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#hasIntervalCalibrationFactor"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#hasLaneClassification"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#hasRampFrequency"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#isConcurrentWith"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#monitors"/>
+    </AsymmetricObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#hasIntervalCalibrationFactor"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#hasLaneClassification"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#hasRampFrequency"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#isConcurrentWith"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#monitors"/>
+    </IrreflexiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasIntervalCalibrationFactor"/>
+        <Class IRI="#LidarAction"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasLaneClassification"/>
+        <Class IRI="#FreewaySection"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasRampFrequency"/>
+        <Class IRI="#FreewaySection"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isConcurrentWith"/>
+        <Class IRI="#LidarAction"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#monitors"/>
+        <Class IRI="#LidarAction"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasIntervalCalibrationFactor"/>
+        <Class IRI="#IntervalCalibrationFactor"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasLaneClassification"/>
+        <Class IRI="#LaneClassification"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasRampFrequency"/>
+        <Class IRI="#RampFrequency"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isConcurrentWith"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#HoverAction"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#monitors"/>
+        <Class IRI="#FreewaySection"/>
+    </ObjectPropertyRange>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#approachesMinimumSpeed"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#exceedsMinimumSpeed"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#exceedsNominalSpeed"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasDoubleValue"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasIntegerValue"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasIntervalInSeconds"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty IRI="#approachesMinimumSpeed"/>
+        <Class IRI="#FreewaySection"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#exceedsMinimumSpeed"/>
+        <Class IRI="#FreewaySection"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#exceedsNominalSpeed"/>
+        <Class IRI="#FreewaySection"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasDoubleValue"/>
+        <Class IRI="#DomainConcept"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasIntegerValue"/>
+        <Class IRI="#DomainConcept"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasIntervalInSeconds"/>
+        <Class IRI="#LidarAction"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#approachesMinimumSpeed"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#exceedsMinimumSpeed"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#exceedsNominalSpeed"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasDoubleValue"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasIntegerValue"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasIntervalInSeconds"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#HoverAction"/>
+                <Variable IRI="urn:swrl#h"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#FreewaySection"/>
+                <Variable IRI="urn:swrl#f"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#LidarAction"/>
+                <Variable IRI="urn:swrl#l"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasWaypoint"/>
+                <Variable IRI="urn:swrl#f"/>
+                <Variable IRI="urn:swrl#w"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasWaypoint"/>
+                <Variable IRI="urn:swrl#h"/>
+                <Variable IRI="urn:swrl#w"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isConcurrentWith"/>
+                <Variable IRI="urn:swrl#l"/>
+                <Variable IRI="urn:swrl#h"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#monitors"/>
+                <Variable IRI="urn:swrl#l"/>
+                <Variable IRI="urn:swrl#f"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#b"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isConcurrentWith"/>
+                <Variable IRI="urn:swrl#x"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+            <DifferentIndividualsAtom>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#b"/>
+            </DifferentIndividualsAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class abbreviatedIRI=":Nothing"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#isConcurrentWith"/>
+                <Variable IRI="urn:swrl#y"/>
+                <Variable IRI="urn:swrl#x"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Variable IRI="urn:swrl#a"/>
+                <Variable IRI="urn:swrl#y"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+</Ontology>
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->

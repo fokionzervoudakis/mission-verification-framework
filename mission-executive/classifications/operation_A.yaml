@@ -1,0 +1,21 @@
+Action:
+  TraversePathSegmentAction:
+    - id: 1
+      type: observer_precondition
+    - id: 2
+      type: terminal_constrained_observer
+    - id: 3
+      type: constrained_subject
+    - id: 4
+      type: terminal_subject_constraint
+      incursion: {start: 60, finish: 0}
+  PhotoSurveillanceAction:
+    - id: 5
+      siblings: [4]
+Asset:
+  Hummingbird:
+    - id: 1
+      type: primary_asset
+    - id: 2
+      vulnerability: 0.01
+      raf: 0.6

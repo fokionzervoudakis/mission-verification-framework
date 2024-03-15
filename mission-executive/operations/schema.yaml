@@ -1,0 +1,116 @@
+type: map
+required: yes
+mapping:
+  "Action":
+    type: map
+    required: yes
+    mapping:
+      "HoverAction":
+        type: seq
+        sequence:
+          - type: map
+            required: yes
+            mapping:
+              "id":
+                type: int
+                required: yes
+              "duration":
+                type: int
+                required: yes
+              "preconditions":
+                type: seq
+                sequence:
+                  - type: int
+              "coordinates":
+                type: seq
+                sequence:
+                  - type: float
+      "LidarAction":
+        type: seq
+        sequence:
+          - type: map
+            required: yes
+            mapping:
+              "id":
+                type: int
+                required: yes
+              "interval":
+                type: int
+                required: yes
+              "concurrencies":
+                type: seq
+                required: yes
+                sequence:
+                  - type: int
+      "PhotoSurveillanceAction":
+        type: seq
+        sequence:
+          - type: map
+            required: yes
+            mapping:
+              "id":
+                type: int
+                required: yes
+              "duration":
+                type: int
+                required: yes
+              "preconditions":
+                type: seq
+                sequence:
+                  - type: int
+      "TraversePathSegmentAction":
+        type: seq
+        sequence:
+          - type: map
+            required: yes
+            mapping:
+              "id":
+                type: int
+                required: yes
+              "duration":
+                type: int
+                required: yes
+              "preconditions":
+                type: seq
+                sequence:
+                  - type: int
+              "coordinates":
+                type: seq
+                sequence:
+                  - type: float
+  "Asset":
+    type: map
+    required: yes
+    mapping:
+      "ARDrone":
+        type: seq
+        sequence:
+          - type: map
+            required: yes
+            mapping:
+              "id":
+                type: int
+                required: yes
+              "endurance":
+                type: int
+              "actions":
+                type: seq
+                required: yes
+                sequence:
+                  - type: int
+      "Hummingbird":
+        type: seq
+        sequence:
+          - type: map
+            required: yes
+            mapping:
+              "id":
+                type: int
+                required: yes
+              "endurance":
+                type: int
+              "actions":
+                type: seq
+                required: yes
+                sequence:
+                  - type: int

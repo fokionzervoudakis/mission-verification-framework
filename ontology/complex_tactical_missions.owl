@@ -1,0 +1,419 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/ontologies/complex_tactical_missions.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.semanticweb.org/ontologies/complex_tactical_missions.owl">
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://www.semanticweb.org/ontologies/complex_missions.owl</Import>
+    <Declaration>
+        <Class IRI="#DirectThreatAreaAction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DirectThreatAreaHoverAction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DirectThreatAreaTPSA"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DomainConcept"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HighVulnerabilityAsset"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowVulnerabilityAsset"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RiskAcceptabilityFactor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ThreatArea"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ThreatAreaAction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ThreatAreaWaypoint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ThreatenedAsset"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ValidAsset"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Vulnerability"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasRiskAcceptabilityFactor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasVulnerability"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#invades"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasDoubleValue"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#HighRiskAcceptabilityFactor"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#HighVulnerability"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LowRiskAcceptabilityFactor"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LowVulnerability"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#DirectThreatAreaAction"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#ThreatAreaAction"/>
+            <ObjectUnionOf>
+                <Class IRI="#DirectThreatAreaHoverAction"/>
+                <Class IRI="#DirectThreatAreaTPSA"/>
+            </ObjectUnionOf>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#DirectThreatAreaHoverAction"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#ThreatAreaAction"/>
+            <ObjectIntersectionOf>
+                <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#HoverAction"/>
+                <ObjectSomeValuesFrom>
+                    <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasWaypoint"/>
+                    <Class IRI="#ThreatAreaWaypoint"/>
+                </ObjectSomeValuesFrom>
+            </ObjectIntersectionOf>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#DirectThreatAreaTPSA"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#ThreatAreaAction"/>
+            <ObjectIntersectionOf>
+                <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#TraversePathSegmentAction"/>
+                <ObjectSomeValuesFrom>
+                    <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasEndpoint"/>
+                    <Class IRI="#ThreatAreaWaypoint"/>
+                </ObjectSomeValuesFrom>
+            </ObjectIntersectionOf>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#HighVulnerabilityAsset"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasCostValue"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="&xsd;maxInclusive">
+                        <Literal datatypeIRI="&xsd;integer">1000</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasSpeedInKilometersPerHour"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="&xsd;maxInclusive">
+                        <Literal datatypeIRI="&xsd;integer">20</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LowVulnerabilityAsset"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasCostValue"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="&xsd;minInclusive">
+                        <Literal datatypeIRI="&xsd;integer">3000</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasSpeedInKilometersPerHour"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:integer"/>
+                    <FacetRestriction facet="&xsd;maxInclusive">
+                        <Literal datatypeIRI="&xsd;integer">60</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#RiskAcceptabilityFactor"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#DomainConcept"/>
+            <ObjectOneOf>
+                <NamedIndividual IRI="#HighRiskAcceptabilityFactor"/>
+                <NamedIndividual IRI="#LowRiskAcceptabilityFactor"/>
+            </ObjectOneOf>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ThreatArea"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Area"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasWaypoint"/>
+                <Class IRI="#ThreatAreaWaypoint"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ThreatAreaAction"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#KineticAction"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasWaypoint"/>
+                <Class IRI="#ThreatAreaWaypoint"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ThreatAreaWaypoint"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Waypoint"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#isWaypointOf"/>
+                <Class IRI="#ThreatArea"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ThreatenedAsset"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <Class IRI="#DirectThreatAreaAction"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ValidAsset"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#ThreatenedAsset"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasAction"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#SensorAction"/>
+                    <ObjectSomeValuesFrom>
+                        <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasSibling"/>
+                        <Class IRI="#DirectThreatAreaAction"/>
+                    </ObjectSomeValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Vulnerability"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#DomainConcept"/>
+            <ObjectOneOf>
+                <NamedIndividual IRI="#HighVulnerability"/>
+                <NamedIndividual IRI="#LowVulnerability"/>
+            </ObjectOneOf>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#HighVulnerabilityAsset"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#hasRiskAcceptabilityFactor"/>
+            <NamedIndividual IRI="#HighRiskAcceptabilityFactor"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HighVulnerabilityAsset"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#hasVulnerability"/>
+            <NamedIndividual IRI="#HighVulnerability"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowVulnerabilityAsset"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#hasRiskAcceptabilityFactor"/>
+            <NamedIndividual IRI="#LowRiskAcceptabilityFactor"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowVulnerabilityAsset"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#hasVulnerability"/>
+            <NamedIndividual IRI="#LowVulnerability"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Action"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Area"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Mission"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Waypoint"/>
+        <Class IRI="#DomainConcept"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#DirectThreatAreaHoverAction"/>
+        <Class IRI="#DirectThreatAreaTPSA"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#HighVulnerabilityAsset"/>
+        <Class IRI="#LowVulnerabilityAsset"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#RiskAcceptabilityFactor"/>
+        <Class IRI="#Vulnerability"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#RiskAcceptabilityFactor"/>
+        <NamedIndividual IRI="#HighRiskAcceptabilityFactor"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Vulnerability"/>
+        <NamedIndividual IRI="#HighVulnerability"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RiskAcceptabilityFactor"/>
+        <NamedIndividual IRI="#LowRiskAcceptabilityFactor"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Vulnerability"/>
+        <NamedIndividual IRI="#LowVulnerability"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDoubleValue"/>
+        <NamedIndividual IRI="#HighRiskAcceptabilityFactor"/>
+        <Literal datatypeIRI="&xsd;double">0.8</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDoubleValue"/>
+        <NamedIndividual IRI="#HighVulnerability"/>
+        <Literal datatypeIRI="&xsd;double">0.1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDoubleValue"/>
+        <NamedIndividual IRI="#LowRiskAcceptabilityFactor"/>
+        <Literal datatypeIRI="&xsd;double">0.6</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasDoubleValue"/>
+        <NamedIndividual IRI="#LowVulnerability"/>
+        <Literal datatypeIRI="&xsd;double">0.01</Literal>
+    </DataPropertyAssertion>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasRiskAcceptabilityFactor"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasVulnerability"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#invades"/>
+    </FunctionalObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#hasRiskAcceptabilityFactor"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#hasVulnerability"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#invades"/>
+    </AsymmetricObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#hasRiskAcceptabilityFactor"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#hasVulnerability"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#invades"/>
+    </IrreflexiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasRiskAcceptabilityFactor"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasVulnerability"/>
+        <Class IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#Asset"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#invades"/>
+        <Class IRI="#DirectThreatAreaTPSA"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasRiskAcceptabilityFactor"/>
+        <Class IRI="#RiskAcceptabilityFactor"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasVulnerability"/>
+        <Class IRI="#Vulnerability"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#invades"/>
+        <Class IRI="#ThreatArea"/>
+    </ObjectPropertyRange>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasDoubleValue"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasDoubleValue"/>
+        <Class IRI="#DomainConcept"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasDoubleValue"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class IRI="#ThreatArea"/>
+                <Variable IRI="urn:swrl#a"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#hasEndpoint"/>
+                <Variable IRI="urn:swrl#x"/>
+                <Variable IRI="urn:swrl#w"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="http://www.semanticweb.org/ontologies/complex_missions.owl#isWaypointOf"/>
+                <Variable IRI="urn:swrl#w"/>
+                <Variable IRI="urn:swrl#a"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="#invades"/>
+                <Variable IRI="urn:swrl#x"/>
+                <Variable IRI="urn:swrl#a"/>
+            </ObjectPropertyAtom>
+        </Head>
+    </DLSafeRule>
+</Ontology>
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->

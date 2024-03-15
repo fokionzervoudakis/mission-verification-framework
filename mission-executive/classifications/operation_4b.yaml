@@ -1,0 +1,19 @@
+Action:
+  TraversePathSegmentAction:
+    - id: 1
+      type: default
+    - id: 2
+      type: default
+      incursion: {start: 15, finish: 0}
+    - id: 4
+      type: default_terminal
+      incursion: {start: 30, finish: 5}
+  HoverAction:
+    - id: 3
+      type: default
+      incursion: {start: 30, finish: 0}
+Asset:
+  Hummingbird:
+    - id: 1
+      vulnerability: 0.01
+      raf: 0.6

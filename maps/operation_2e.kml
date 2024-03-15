@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+    <name>operation_2e.kml</name>
+    <Folder>
+        <name>Action</name>
+        <Folder>
+            <name>KineticAction</name>
+            <Folder>
+                <name>HoverAction</name>
+                <Placemark>
+                    <name>1</name>
+                    <Point>
+                        <coordinates>-112.1334152514208,36.08362433106716,0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark>
+                    <name>2</name>
+                    <Point>
+                        <coordinates>-112.1334152514208,36.08362433106716,0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark>
+                    <name>3</name>
+                    <Point>
+                        <coordinates>-112.1199316051625,36.07823185748754,0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark>
+                    <name>4</name>
+                    <Point>
+                        <coordinates>-112.1075818315498,36.08838518690878,0</coordinates>
+                    </Point>
+                </Placemark>
+            </Folder>
+        </Folder>
+    </Folder>
+</Document>
+</kml>

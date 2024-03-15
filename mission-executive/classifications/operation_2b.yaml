@@ -1,0 +1,12 @@
+Action:
+  HoverAction:
+    - id: 1
+      type: observer_precondition
+    - id: 2
+      type: terminal_observer
+    - id: 3
+      type: singleton_subject
+Asset:
+  ARDrone:
+    - id: 1
+      type: primary_asset
