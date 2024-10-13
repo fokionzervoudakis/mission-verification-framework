@@ -1,4 +1,10 @@
-alL: validate execute generate classify parse
+default:
+	@echo "make install"
+	@echo "make validate"
+	@echo "make execute"
+	@echo "make generate"
+	@echo "make classify"
+	@echo "make parse"
 
 # Install dependencies
 install:
@@ -26,4 +32,4 @@ classify:
 parse:
 	cd parser/; ./parser.rb
 
-.PHONY: all install validate execute generate classify parse
+.PHONY: default install validate execute generate classify parse
