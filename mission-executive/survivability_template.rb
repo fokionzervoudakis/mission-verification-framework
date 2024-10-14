@@ -133,8 +133,8 @@ endmodule
 end
 
 execute do |operation|
-  puts ('=' * 50).to_s
+  puts('=' * 50)
   puts "survivability constructs for #{operation}..."
-  puts ('-' * 50).to_s
+  puts('-' * 50)
   ThreatLoader.new(operation).assets.each { |asset| SurvivabilityTemplate.generate(asset) }
 end
