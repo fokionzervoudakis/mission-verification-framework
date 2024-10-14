@@ -91,8 +91,8 @@ endmodule
 end
 
 execute do |operation|
-  puts ('=' * 50).to_s
+  puts('=' * 50)
   puts "asset modules for #{operation}..."
-  puts ('-' * 50).to_s
+  puts('-' * 50)
   ClassLoader.new(operation).assets.each { |asset| AssetTemplate.generate asset }
 end

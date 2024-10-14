@@ -38,7 +38,7 @@ class KineticAction < Action; end
 
 class HoverAction < KineticAction
   def initialize(id, duration)
-    super id, duration
+    super(id, duration)
     @concurrencies = []
   end
 
