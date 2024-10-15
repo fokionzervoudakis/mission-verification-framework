@@ -28,7 +28,7 @@ generate:
 
 classify:
 	cd prolog-kb/; \
-		find . -name 'operation_*' -exec swipl -q -s {} -t halt \;
+		find . -name 'operation_*' | sort | xargs -I {} swipl -q -s {} -t halt
 
 parse:
 	cd parser/; ./parser.rb
