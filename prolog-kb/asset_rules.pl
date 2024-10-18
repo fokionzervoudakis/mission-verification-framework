@@ -21,6 +21,13 @@ observed_asset(A) :-
 observes(A, B) :-
     crosscutting_precondition(A, _, B, _).
 
+% Check with better output
+check_primary_asset(A) :-
+    (   primary_asset(A)
+    ->  format('\e[32mSuccess\e[0m: \e[34m~w\e[0m is a \e[33mprimary asset\e[0m~n', [A])
+    ;   format('\e[31mWarning\e[0m: \e[34m~w\e[0m is not a \e[33mprimary asset\e[0m~n', [A])
+    ).
+
 primary_asset(A) :-
     observer_asset(A),
     (
