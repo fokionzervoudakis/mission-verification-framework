@@ -11,7 +11,6 @@ default:
 install:
 	brew install swi-prolog
 	bundle install
-	bundle exec yard gems
 
 validate:
 	cd mission-executive/operations/; \
