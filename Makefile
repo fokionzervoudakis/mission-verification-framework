@@ -35,5 +35,4 @@ parse:
 lint:
 	bundle exec rubocop
 
-.PHONY: default install validate execute generate classify parse lint
 .SILENT: default install validate execute generate classify parse lint
