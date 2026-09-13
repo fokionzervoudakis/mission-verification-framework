@@ -4,6 +4,10 @@ install:
     @brew install ruby swi-prolog
     @bundle install
 
+# Run all tasks
+[group('run')]
+run: validate execute generate classify parse
+
 # Validate mission plans
 [group('run')]
 validate:
