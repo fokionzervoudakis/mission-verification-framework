@@ -1,14 +1,14 @@
 # Install dependencies
 [group('setup')]
 install:
-    @brew install swi-prolog
+    @brew install ruby swi-prolog
     @bundle install
 
 # Validate mission plans
 [group('run')]
 validate:
     @cd mission-executive/operations/; \
-        find . -name 'operation_*' -exec kwalify -lf schema.yaml {} \;
+        find . -name 'operation_*' -exec bundle exec kwalify -lf schema.yaml {} \;
 
 # Execute individual mission plans
 [group('run')]
