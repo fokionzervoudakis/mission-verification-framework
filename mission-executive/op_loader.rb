@@ -31,7 +31,7 @@ class OpLoader
     @op_file = load_file operation
     collections = %i[actions concurrencies preconditions assets]
     collections.each { |collection| instance_variable_set("@#{collection}", {}) }
-    collections.each { |collection| send("load_#{collection}") } # rubocop:disable Style/CombinableLoops
+    collections.each { |collection| send("load_#{collection}") }
   end
 
   private

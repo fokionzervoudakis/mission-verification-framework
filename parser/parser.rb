@@ -19,12 +19,10 @@ end
     :const,
     :dtmc,
     :endmodule,
-    # rubocop:disable Lint/BooleanSymbol
     :false, :formula,
     :init, :int,
     /mod\(/, /^module/,
     :true
-    # rubocop:enable Lint/BooleanSymbol
   ],
   operators: [
     %r{[!&*+<=?|]| / },

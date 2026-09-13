@@ -34,8 +34,3 @@ classify:
 [group('run')]
 parse:
     @cd parser/; ./parser.rb
-
-# Lint Ruby code with RuboCop
-[group('lint')]
-lint:
-    @bundle exec rubocop
