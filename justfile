@@ -11,30 +11,30 @@ run: validate execute generate classify parse
 # Validate mission plans
 [group('run')]
 validate:
-    @cd mission-executive/operations/; \
-        find . -name 'operation_*' -exec bundle exec kwalify -lf schema.yaml {} \;
+    @cd mission-executive/operations/ && \
+        find . -name 'operation_*' -exec bundle exec kwalify -lf schema.yaml {} +
 
 # Execute individual mission plans
 [group('run')]
 execute:
-    @cd mission-executive/; ./mission.rb
+    @cd mission-executive/ && ./mission.rb
 
 
 # Generate PRISM DTMC/PCTL code from templates
 [group('run')]
 generate:
-    @cd mission-executive/; \
-        ./asset_template.rb; \
-        ./survivability_template.rb; \
+    @cd mission-executive/ && \
+        ./asset_template.rb && \
+        ./survivability_template.rb && \
         ./property_template.rb
 
 # Use SWI-Prolog to classify UAV mission elements
 [group('run')]
 classify:
-    @cd prolog-kb/; \
+    @cd prolog-kb/ && \
         find . -name 'operation_*' | sort | xargs -I {} swipl -q -s {} -t halt
 
 # Execute the parser
 [group('run')]
 parse:
-    @cd parser/; ./parser.rb
+    @cd parser/ && ./parser.rb
