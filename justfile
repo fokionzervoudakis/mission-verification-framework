@@ -1,27 +1,30 @@
+default:
+    @just --list
+
 # Install dependencies
 [group('setup')]
 install:
-    @brew install ruby swi-prolog
+    @brew install ruby
+    @brew install swi-prolog
     @bundle install
 
 # Run all tasks
-[group('run')]
+[group('dev')]
 run: validate execute generate classify parse
 
 # Validate mission plans
-[group('run')]
+[group('dev')]
 validate:
     @cd mission-executive/operations/ && \
         find . -name 'operation_*' -exec bundle exec kwalify -lf schema.yaml {} +
 
 # Execute individual mission plans
-[group('run')]
+[group('dev')]
 execute:
     @cd mission-executive/ && ./mission.rb
 
-
 # Generate PRISM DTMC/PCTL code from templates
-[group('run')]
+[group('dev')]
 generate:
     @cd mission-executive/ && \
         ./asset_template.rb && \
@@ -29,12 +32,12 @@ generate:
         ./property_template.rb
 
 # Use SWI-Prolog to classify UAV mission elements
-[group('run')]
+[group('dev')]
 classify:
     @cd prolog-kb/ && \
         find . -name 'operation_*' | sort | xargs -I {} swipl -q -s {} -t halt
 
 # Execute the parser
-[group('run')]
+[group('dev')]
 parse:
     @cd parser/ && ./parser.rb
