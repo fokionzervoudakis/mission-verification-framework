@@ -14,6 +14,6 @@ module Subject
   end
 
   def notify
-    @observers.each { |observer| observer.update(self) }
+    @observers.dup.each { |observer| observer.update(self) }
   end
 end
