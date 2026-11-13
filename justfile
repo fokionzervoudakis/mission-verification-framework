@@ -54,4 +54,4 @@ classify:
 # Execute the parser
 [group('dev')]
 parse:
-    @cd parser/ && ./parser.rb
+    @cd parser/ && ./parser.rb && ./metrics.rb
