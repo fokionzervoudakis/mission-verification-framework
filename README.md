@@ -30,6 +30,12 @@ Execute all mission plans.
 just execute
 ```
 
+Lint sources and test the mission executive.
+
+```bash
+just lint test
+```
+
 Generate *PRISM DTMC/PCTL* code from templates.
 
 ```bash

@@ -23,6 +23,11 @@ validate:
 execute:
     @cd mission-executive/ && ./mission.rb
 
+# Lint sources
+[group('dev')]
+lint:
+    @bundle exec rubocop
+
 # Test the mission executive
 [group('dev')]
 test:
