@@ -45,4 +45,4 @@ tactical = operations.select do |operation, _counts|
 end
 lines.push(spacer, *summary('tactical ops', tactical.values))
 
-File.write("#{PATH}/../data/mission-metrics.csv", lines.join("\n"))
+File.write(ARGV.fetch(0, "#{PATH}/../data/mission-metrics.csv"), lines.join("\n"))

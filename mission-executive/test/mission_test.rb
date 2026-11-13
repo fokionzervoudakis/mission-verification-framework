@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'timeout'
 
 require_relative '../mission'
 
@@ -30,6 +31,17 @@ class MissionTest < Minitest::Test
       Mission.execute(loader.assets)
 
       assert_equal unfinished, loader.actions.reject { |_id, action| action.completed? }.keys
+    end
+  end
+
+  Dir['operations/operation_*.yaml'].each do |file|
+    operation = File.basename(file, '.yaml')
+
+    define_method("test_#{operation}_runs_to_an_end") do
+      assets = OpLoader.new(operation).assets
+      Timeout.timeout(10) { Mission.execute(assets) }
+
+      assert_empty assets
     end
   end
 
