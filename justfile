@@ -46,13 +46,8 @@ run: validate execute generate classify parse
 # Validate mission plans
 [group('dev')]
 validate:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    echo "{{RED}}{{BOLD}}Validating mission plans...{{RESET}}"
-    cd mission-executive/operations/
-    # kwalify exits 0 for a plan that breaks the schema
-    find . -name 'operation_*' -exec bundle exec kwalify -lf schema.yaml {} + |
-        awk '{ print } /INVALID/ { invalid = 1 } END { exit invalid }'
+    @echo "{{RED}}{{BOLD}}Validating mission plans...{{RESET}}"
+    @cd mission-executive/operations/ && bundle exec kwalify -lf schema.yaml operation_*
 
 # Execute individual mission plans
 [group('dev')]
