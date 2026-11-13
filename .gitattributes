@@ -1,0 +1,3 @@
+# The .pm files are PRISM models, which Linguist misreads as Raku.
+# Linguist has no PRISM language, so keep them out of the language stats.
+*.pm linguist-detectable=false
