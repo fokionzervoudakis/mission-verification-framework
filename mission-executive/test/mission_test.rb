@@ -73,4 +73,29 @@ class MissionTest < Minitest::Test
 
     assert_equal 3, concurrency.executions
   end
+
+  def test_filter_alone_selects_every_operation
+    assert_equal operations, operations('filter')
+  end
+
+  def test_filter_with_an_operation_selects_only_that_operation
+    assert_equal %w[operation_1a], operations('filter', 'operation_1a')
+  end
+
+  def test_unknown_operation_aborts_with_a_message
+    _out, err = capture_io { assert_raises(SystemExit) { operations('nope') } }
+
+    assert_equal "unknown operation: nope\n", err
+  end
+
+  private
+
+  # The operations the scripts would run for the given command-line arguments.
+  def operations(*args)
+    argv = ARGV.dup
+    ARGV.replace(args)
+    [].tap { |operations| execute { |operation| operations.push(operation) } }
+  ensure
+    ARGV.replace(argv)
+  end
 end
