@@ -15,8 +15,12 @@ run: validate execute generate classify parse
 # Validate mission plans
 [group('dev')]
 validate:
-    @cd mission-executive/operations/ && \
-        find . -name 'operation_*' -exec bundle exec kwalify -lf schema.yaml {} +
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cd mission-executive/operations/
+    # kwalify exits 0 for a plan that breaks the schema
+    find . -name 'operation_*' -exec bundle exec kwalify -lf schema.yaml {} + |
+        awk '{ print } /INVALID/ { invalid = 1 } END { exit invalid }'
 
 # Execute individual mission plans
 [group('dev')]
@@ -45,7 +49,7 @@ generate:
 [group('dev')]
 classify:
     @cd prolog-kb/ && \
-        find . -name 'operation_*' | sort | xargs -I {} swipl -q -s {} -t halt
+        find . -name 'operation_*' | sort | xargs -I {} swipl --on-error=status -q -s {} -t halt
 
 # Execute the parser
 [group('dev')]
