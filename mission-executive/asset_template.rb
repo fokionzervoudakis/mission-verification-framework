@@ -90,9 +90,11 @@ endmodule
   end
 end
 
-execute do |operation|
-  puts('=' * 50)
-  puts "asset modules for #{operation}..."
-  puts('-' * 50)
-  ClassLoader.new(operation).assets.each { |asset| AssetTemplate.generate asset }
+if $PROGRAM_NAME == __FILE__
+  execute do |operation|
+    puts('=' * 50)
+    puts "asset modules for #{operation}..."
+    puts('-' * 50)
+    ClassLoader.new(operation).assets.each { |asset| AssetTemplate.generate asset }
+  end
 end

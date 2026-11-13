@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require_relative 'asset_template'
 require_relative 'template_util'
 require_relative 'util'
 
@@ -77,7 +78,7 @@ formula raf#{@asset.id} = #{sad} / tkad#{@asset.id};
       next if action.incursion.nil?
 
       params = {
-        action: "[actn#{action.id}]",
+        action: "[#{AssetTemplate.action_name(action)}]",
         guard1: "!a#{@asset.id}d & actn#{action.id}_tai",
         guard2: " a#{@asset.id}d | !actn#{action.id}_tai",
         update: "#{1 - @asset.vulnerability}:(a#{@asset.id}d'=false) + " \
@@ -110,7 +111,7 @@ endmodule
       next if siblings.empty?
 
       params = {
-        action: "[actn#{action.id}]",
+        action: "[#{AssetTemplate.action_name(action)}]",
         guard1: " actn#{action.id}_tai & (#{siblings}) & sad#{@asset.id}<tkad#{@asset.id}",
         guard2: "!actn#{action.id}_tai | !(#{siblings})",
         update: "(sad#{@asset.id}'=sad#{@asset.id}+1)"

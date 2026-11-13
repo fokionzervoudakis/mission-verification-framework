@@ -35,7 +35,7 @@ lint:
 # Test the mission executive
 [group('dev')]
 test:
-    @cd mission-executive/ && ruby test/mission_test.rb
+    @cd mission-executive/ && ruby -e 'Dir["./test/*_test.rb"].each { |file| require file }'
 
 # Generate PRISM DTMC/PCTL code from templates
 [group('dev')]
