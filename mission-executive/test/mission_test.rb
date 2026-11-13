@@ -88,6 +88,12 @@ class MissionTest < Minitest::Test
     assert_equal "unknown operation: nope\n", err
   end
 
+  def test_support_file_is_not_an_operation
+    _out, err = capture_io { assert_raises(SystemExit) { operations('schema') } }
+
+    assert_equal "unknown operation: schema\n", err
+  end
+
   private
 
   # The operations the scripts would run for the given command-line arguments.
