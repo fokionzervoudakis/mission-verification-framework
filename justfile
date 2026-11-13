@@ -23,6 +23,11 @@ validate:
 execute:
     @cd mission-executive/ && ./mission.rb
 
+# Test the mission executive
+[group('dev')]
+test:
+    @cd mission-executive/ && ruby test/mission_test.rb
+
 # Generate PRISM DTMC/PCTL code from templates
 [group('dev')]
 generate:

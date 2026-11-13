@@ -14,7 +14,9 @@ module Mission
   end
 end
 
-execute do |operation|
-  puts "executing #{operation}..."
-  Mission.execute(OpLoader.new(operation).assets)
+if $PROGRAM_NAME == __FILE__
+  execute do |operation|
+    puts "executing #{operation}..."
+    Mission.execute(OpLoader.new(operation).assets)
+  end
 end
