@@ -2,6 +2,8 @@ require 'minitest/autorun'
 
 require_relative '../mission'
 
+OpLoader.attr_reader :actions
+
 class MissionTest < Minitest::Test
   # Stands in for a concurrent action, counting how often it is driven.
   class Concurrency
@@ -16,33 +18,19 @@ class MissionTest < Minitest::Test
     end
   end
 
-  def setup
-    ARDrone.endurance = 70
-    Hummingbird.endurance = 120
-  end
+  # Actions each single-asset plan leaves unfinished when endurance runs out.
+  UNFINISHED = {
+    operation_1a: [], operation_1b: [], operation_1c: [1], operation_1d: [],
+    operation_1e: [2], operation_1f: [2], operation_1g: []
+  }.freeze
 
-  # operation_1d
-  def test_sequential_actions_complete_when_they_exactly_fit_the_endurance
-    first, second = fly(ARDrone, 40, 30)
+  UNFINISHED.each_pair do |operation, unfinished|
+    define_method("test_#{operation}_leaves_actions_#{unfinished}_unfinished") do
+      loader = OpLoader.new(operation)
+      Mission.execute(loader.assets)
 
-    assert_predicate first, :completed?
-    assert_predicate second, :completed?
-  end
-
-  # operation_1e
-  def test_dependent_action_fails_when_its_precondition_overruns
-    first, second = fly(ARDrone, 41, 30)
-
-    assert_predicate first, :completed?
-    refute_predicate second, :completed?
-  end
-
-  # operation_1f
-  def test_dependent_action_fails_when_it_overruns_the_endurance
-    first, second = fly(ARDrone, 40, 31)
-
-    assert_predicate first, :completed?
-    refute_predicate second, :completed?
+      assert_equal unfinished, loader.actions.reject { |_id, action| action.completed? }.keys
+    end
   end
 
   def test_action_waits_for_every_precondition
@@ -84,20 +72,5 @@ class MissionTest < Minitest::Test
     3.times { hover.execute }
 
     assert_equal 3, concurrency.executions
-  end
-
-  private
-
-  # Flies a single asset whose two actions run one after the other.
-  def fly(asset_class, first_duration, second_duration)
-    first = HoverAction.new(1, first_duration)
-    second = HoverAction.new(2, second_duration)
-    second.add_precondition(first)
-
-    asset = asset_class.new(1)
-    [first, second].each { |action| asset.add_action(action) }
-    Mission.execute([asset])
-
-    [first, second]
   end
 end
