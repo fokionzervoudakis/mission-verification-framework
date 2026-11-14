@@ -12,6 +12,18 @@ class AssetTest < Minitest::Test
     run_pair(1, 2, 1).each { |action| refute_predicate action, :completed? }
   end
 
+  def test_sensor_action_stops_when_no_kinetic_action_runs
+    asset = Class.new(Asset) { self.endurance = 3 }.new(1)
+    hover = HoverAction.new(1, 1)
+    photo = PhotoSurveillanceAction.new(2, 2)
+    [hover, photo].each { |action| asset.add_action(action) }
+
+    Mission.execute([asset])
+
+    assert_predicate hover, :completed?
+    refute_predicate photo, :completed?
+  end
+
   private
 
   # Runs two assets of the given endurance with one action each, the second

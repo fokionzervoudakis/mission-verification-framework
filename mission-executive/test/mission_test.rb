@@ -22,11 +22,11 @@ class MissionTest < Minitest::Test
   # Actions each plan leaves unfinished when endurance runs out; every other
   # plan finishes them all. Recorded from the executive as it runs, not from
   # the plans' "point of failure" comments, which it contradicts for 2d, 2f,
-  # 2i, 2t, 3c, 4c and 4e.
+  # 2i, 2t, 4c and 4e.
   UNFINISHED = {
     operation_1c: [1], operation_1e: [2], operation_1f: [2],
     operation_2l: [3], operation_2o: [3], operation_2q: [3],
-    operation_3d: [2], operation_3g: [3], operation_3j: [3], operation_3n: [4], operation_3r: [4]
+    operation_3c: [2], operation_3d: [2], operation_3g: [3], operation_3j: [3], operation_3n: [4], operation_3r: [4]
   }.freeze
 
   Dir['operations/operation_*.yaml'].each do |file|

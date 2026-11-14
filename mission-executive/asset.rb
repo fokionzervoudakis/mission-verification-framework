@@ -12,8 +12,13 @@ class Asset
   end
 
   def execute
+    # A sensor action only works while a kinetic action of its asset runs.
+    flying = @actions.any? do |action|
+      action.is_a?(KineticAction) && action.ready?
+    end
+
     @actions.each do |action|
-      action.execute
+      action.execute if flying || !action.is_a?(SensorAction)
     end
     @endurance -= 1 if started?
   end
