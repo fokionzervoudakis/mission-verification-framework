@@ -44,6 +44,8 @@ class OpLoader
     @op_file.fetch(:Action).each_pair do |type, actions|
       actions.symbolize_keys!.each do |action|
         id = action.fetch(:id)
+        raise ArgumentError, "duplicate action id: #{id}" if @actions.key?(id)
+
         @actions[id] = type.to_c.new(id, type == :LidarAction ? action.fetch(:interval) : action.fetch(:duration))
         @concurrencies[id] = action.fetch(:concurrencies) if action.include?(:concurrencies)
         @preconditions[id] = action.fetch(:preconditions) if action.include?(:preconditions)
@@ -56,6 +58,8 @@ class OpLoader
     @op_file.fetch(:Asset).each_pair do |type, assets|
       assets.symbolize_keys!.each do |asset|
         id = asset.fetch(:id)
+        raise ArgumentError, "duplicate asset id: #{id}" if @assets.key?(id)
+
         @assets[id] = type.to_c.new(id)
         asset.fetch(:actions).each { |action| @assets[id].add_action(@actions.fetch(action)) }
       end
