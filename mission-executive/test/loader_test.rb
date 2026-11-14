@@ -57,4 +57,21 @@ class LoaderTest < Minitest::Test
     error = assert_raises(ArgumentError) { PlanLoader.new(plan) }
     assert_equal 'action 2 cannot be a precondition', error.message
   end
+
+  def test_action_owned_by_two_assets_is_rejected
+    plan = { 'Action' => { 'HoverAction' => [{ 'id' => 1, 'duration' => 5 }] },
+             'Asset' => { 'ARDrone' => [{ 'id' => 1, 'actions' => [1] }],
+                          'Hummingbird' => [{ 'id' => 2, 'actions' => [1] }] } }
+
+    error = assert_raises(ArgumentError) { PlanLoader.new(plan) }
+    assert_equal 'action 1 belongs to assets 1 and 2', error.message
+  end
+
+  def test_action_owned_by_no_asset_is_rejected
+    plan = { 'Action' => { 'HoverAction' => [{ 'id' => 1, 'duration' => 5 }, { 'id' => 2, 'duration' => 5 }] },
+             'Asset' => { 'ARDrone' => [{ 'id' => 1, 'actions' => [1] }] } }
+
+    error = assert_raises(ArgumentError) { PlanLoader.new(plan) }
+    assert_equal 'action 2 belongs to no asset', error.message
+  end
 end

@@ -63,19 +63,26 @@ class OpLoader
 
   def load_assets
     load_file(:asset_data).each_pair { |type, asset| type.to_c.endurance = asset.fetch(:endurance) }
+    @owners = {}
     @op_file.fetch(:Asset).each_pair do |type, assets|
       assets.symbolize_keys!.each do |asset|
         id = asset.fetch(:id)
         raise ArgumentError, "duplicate asset id: #{id}" if @assets.key?(id)
 
         @assets[id] = type.to_c.new(id)
-        asset.fetch(:actions).each do |action|
-          # A lidar action runs only through the hover action it is concurrent with.
-          raise ArgumentError, "asset #{id} cannot own action #{action}" unless @actions.fetch(action).is_a?(Action)
-
-          @assets[id].add_action(@actions.fetch(action))
-        end
+        asset.fetch(:actions).each { |action| assign(action, id) }
       end
     end
+    unowned, = @actions.find { |id, action| action.is_a?(Action) && !@owners.key?(id) }
+    raise ArgumentError, "action #{unowned} belongs to no asset" if unowned
+  end
+
+  def assign(action, asset)
+    # A lidar action runs only through the hover action it is concurrent with.
+    raise ArgumentError, "asset #{asset} cannot own action #{action}" unless @actions.fetch(action).is_a?(Action)
+    raise ArgumentError, "action #{action} belongs to assets #{@owners[action]} and #{asset}" if @owners.key?(action)
+
+    @owners[action] = asset
+    @assets[asset].add_action(@actions.fetch(action))
   end
 end
