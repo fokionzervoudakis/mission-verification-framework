@@ -28,6 +28,10 @@ class Action
     @duration.zero?
   end
 
+  def ready?
+    @subjects.empty?
+  end
+
   private
 
   def execute_naively

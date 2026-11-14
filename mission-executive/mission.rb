@@ -5,7 +5,8 @@ require_relative 'op_loader'
 
 module Mission
   def self.execute(assets)
-    until assets.empty?
+    # An asset that has not started can only be waiting on one that has.
+    until assets.none? { |asset| asset.started? }
       assets.each do |asset|
         asset.execute
       end

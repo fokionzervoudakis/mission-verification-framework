@@ -15,7 +15,14 @@ class Asset
     @actions.each do |action|
       action.execute
     end
-    @endurance -= 1
+    @endurance -= 1 if started?
+  end
+
+  # An asset uses no endurance until one of its actions can run.
+  def started?
+    @started ||= @actions.any? do |action|
+      action.ready?
+    end
   end
 
   def finish_tick

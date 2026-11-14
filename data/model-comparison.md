@@ -2,7 +2,7 @@
 
 One row per plan: what the YAML marks, what PRISM computes for the model, and what the executive does.
 
-Model and executive agree on 52 of 58 plans and disagree on 6.
+Model and executive agree on 53 of 58 plans and disagree on 5.
 
 - **YAML mark**: the plan has a "point of failure" comment.
 - **PRISM: mission succeeds**: the probability that the property in the plan's `.pctl` file holds. 1.0 is always, 0.0 is never.
@@ -27,9 +27,9 @@ Every PRISM result, including the two extra properties of `operation_5b`, is in 
 | operation_2d | point of failure | 0.0 | 0.0 | all actions completed | no |
 | operation_2e |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2f | point of failure | 0.0 | 0.0 | all actions completed | no |
-| operation_2g |  | 1.0 | 1.0 | unfinished actions: 3, 4, 5 | no |
-| operation_2h |  | 1.0 | 1.0 | unfinished actions: 3, 4, 5 | no |
-| operation_2i | point of failure | 0.0 | 0.0 | unfinished actions: 3, 4, 5 | yes |
+| operation_2g |  | 1.0 | 1.0 | all actions completed | yes |
+| operation_2h |  | 1.0 | 1.0 | all actions completed | yes |
+| operation_2i | point of failure | 0.0 | 0.0 | all actions completed | no |
 | operation_2j |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2k |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2l | point of failure | 0.0 | 0.0 | unfinished actions: 3 | yes |
