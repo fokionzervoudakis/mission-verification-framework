@@ -37,7 +37,7 @@ class OpLoader
   private
 
   def load_file(file, dir = :operations)
-    YAML.safe_load(File.open("#{dir}/#{file}.yaml")).symbolize_keys!
+    YAML.safe_load(File.open("#{__dir__}/#{dir}/#{file}.yaml")).symbolize_keys!
   end
 
   def load_actions

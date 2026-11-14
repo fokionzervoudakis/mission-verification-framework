@@ -1,4 +1,6 @@
 require 'minitest/autorun'
+require 'open3'
+require 'tmpdir'
 require 'timeout'
 
 require_relative '../mission'
@@ -111,6 +113,13 @@ class MissionTest < Minitest::Test
 
     error = assert_raises(ArgumentError) { PlanLoader.new(plan) }
     assert_equal 'duplicate asset id: 1', error.message
+  end
+
+  def test_scripts_find_their_plans_from_any_directory
+    output, status = Open3.capture2(File.expand_path('mission.rb'), 'operation_1a', chdir: Dir.tmpdir)
+    assert_predicate status, :success?
+
+    assert_equal "executing operation_1a...\n", output
   end
 
   def test_filter_alone_selects_every_operation
