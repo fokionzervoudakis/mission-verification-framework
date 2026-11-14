@@ -17,6 +17,11 @@ class OpLoader
             when :preconditions then id1 = observer_id
                                      id2 = subject_id
             end
+            # A lidar action never completes, so nothing waiting on it would ever run.
+            if name == :preconditions && !@actions.fetch(id2).is_a?(Action)
+              raise ArgumentError, "action #{id2} cannot be a precondition"
+            end
+
             action = @actions.fetch(id1)
             raise ArgumentError, "action #{id1} takes no #{name}" unless action.respond_to?("add_#{name.singularize}")
 
