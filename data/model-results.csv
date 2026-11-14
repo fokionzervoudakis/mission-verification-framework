@@ -1,0 +1,61 @@
+operation,property,mission succeeds,actions complete,deadlock
+operation_1a,"P=? [ F d1=0 ]",1.0,1.0,no
+operation_1b,"P=? [ F d1=0 ]",1.0,1.0,no
+operation_1c,"P=? [ F d1=0 ]",0.0,0.0,no
+operation_1d,"P=? [ F d2=0 ]",1.0,1.0,no
+operation_1e,"P=? [ F d2=0 ]",0.0,0.0,no
+operation_1f,"P=? [ F d2=0 ]",0.0,0.0,no
+operation_1g,"P=? [ F d3=0 ]",1.0,1.0,no
+operation_2a,"P=? [ F d2=0 & d3=0 ]",1.0,1.0,no
+operation_2b,"P=? [ F d2=0 ]",1.0,1.0,no
+operation_2c,"P=? [ F d2=0 ]",1.0,1.0,no
+operation_2d,"P=? [ F d2=0 ]",0.0,0.0,yes
+operation_2e,"P=? [ F d2=0 ]",1.0,1.0,no
+operation_2f,"P=? [ F d2=0 ]",0.0,0.0,yes
+operation_2g,"P=? [ F d3=0 & d5=0 ]",1.0,1.0,no
+operation_2h,"P=? [ F d3=0 & d5=0 ]",1.0,1.0,no
+operation_2i,"P=? [ F d3=0 & d5=0 ]",0.0,0.0,yes
+operation_2j,"P=? [ F d3=0 ]",1.0,1.0,no
+operation_2k,"P=? [ F d3=0 ]",1.0,1.0,no
+operation_2l,"P=? [ F d3=0 ]",0.0,0.0,yes
+operation_2m,"P=? [ F d3=0 & d6=0 ]",1.0,1.0,no
+operation_2n,"P=? [ F d3=0 & d6=0 ]",1.0,1.0,no
+operation_2o,"P=? [ F d3=0 & d6=0 ]",0.0,0.0,yes
+operation_2p,"P=? [ F d3=0 & d6=0 ]",1.0,1.0,no
+operation_2q,"P=? [ F d3=0 & d6=0 ]",0.0,0.0,yes
+operation_2r,"P=? [ F d2=0 ]",1.0,1.0,no
+operation_2s,"P=? [ F d2=0 ]",1.0,1.0,no
+operation_2t,"P=? [ F d2=0 ]",0.0,0.0,yes
+operation_2u,"P=? [ F d3=0 ]",1.0,1.0,no
+operation_2v,"P=? [ F d2=0 & d5=0 ]",1.0,1.0,no
+operation_2w,"P=? [ F d2=0 & d6=0 ]",1.0,1.0,no
+operation_2x,"P=? [ F d2=0 & d6=0 ]",1.0,1.0,no
+operation_3a,"P=? [ F d1=0 & d2=0 ]",1.0,1.0,no
+operation_3b,"P=? [ F d1=0 & d2=0 ]",1.0,1.0,no
+operation_3c,"P=? [ F d1=0 & d2=0 ]",0.0,0.0,no
+operation_3d,"P=? [ F d1=0 & d2=0 ]",0.0,0.0,no
+operation_3e,"P=? [ F d2=0 & d3=0 ]",1.0,1.0,no
+operation_3f,"P=? [ F d2=0 & d3=0 ]",1.0,1.0,no
+operation_3g,"P=? [ F d2=0 & d3=0 ]",0.0,0.0,no
+operation_3h,"P=? [ F d2=0 & d3=0 ]",1.0,1.0,no
+operation_3i,"P=? [ F d2=0 & d3=0 ]",1.0,1.0,no
+operation_3j,"P=? [ F d2=0 & d3=0 ]",0.0,0.0,no
+operation_3k,"P=? [ F d2=0 & d4=0 ]",1.0,1.0,no
+operation_3l,"P=? [ F d2=0 & d4=0 ]",1.0,1.0,no
+operation_3m,"P=? [ F d2=0 & d4=0 ]",1.0,1.0,no
+operation_3n,"P=? [ F d2=0 & d4=0 ]",0.0,0.0,no
+operation_3o,"P=? [ F d2=0 & d4=0 ]",1.0,1.0,no
+operation_3p,"P=? [ F d2=0 & d4=0 ]",1.0,1.0,no
+operation_3q,"P=? [ F d2=0 & d4=0 ]",1.0,1.0,no
+operation_3r,"P=? [ F d2=0 & d4=0 ]",0.0,0.0,no
+operation_4a,"P=? [ F d4=0 ]",1.0,1.0,no
+operation_4b,"P=? [ F d4=0 & !a1d & raf1>0.6 ]",0.0,1.0,no
+operation_4c,"P=? [ F d4=0 & !a1d & raf1>0.6 ]",0.0,1.0,no
+operation_4d,"P=? [ F d4=0 & !a1d & raf1>0.6 ]",0.49483865960020695,1.0,no
+operation_4e,"P=? [ F d4=0 & !a1d & raf1>0.6 ]",0.0,1.0,no
+operation_4f,"P=? [ F d4=0 & !a1d & raf1>0.6 ]",0.49483865960020695,1.0,no
+operation_5a,"P=? [ F d3=0 ]",1.0,1.0,no
+operation_5b,"P=? [ F d3=0 ]",1.0,1.0,no
+operation_5b,"P=? [ F nse4 & spd1=0 & !mod(d1, ci4)=0 ]",0.6250983112904364,,no
+operation_5b,"P=? [ F nse5 & spd2=0 & !mod(d3, ci5)=0 ]",0.6507381247299331,,no
+operation_A,"P=? [ F d2=0 & d4=0 & !a2d & raf2>0.6 ]",0.29938039131233124,1.0,no

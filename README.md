@@ -53,6 +53,12 @@ swipl
 ?- halt.
 ```
 
+Verify the *PRISM* models. Requires [PRISM](https://www.prismmodelchecker.org).
+
+```bash
+just verify
+```
+
 Execute the parser.
 
 ```bash

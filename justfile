@@ -62,6 +62,13 @@ classify:
     @cd prolog-kb/ && \
         find . -name 'operation_*' | sort | xargs -I {} swipl --on-error=status -q -s {} -t halt
 
+# PRISM must be installed in ~/prism
+# Verify the PRISM models
+[group('dev')]
+verify:
+    @echo "{{RED}}{{BOLD}}Verifying the PRISM models...{{RESET}}"
+    @cd scripts/ && PRISM=~/prism/bin/prism ./model_results.rb
+
 # Execute the parser
 [group('dev')]
 parse:
