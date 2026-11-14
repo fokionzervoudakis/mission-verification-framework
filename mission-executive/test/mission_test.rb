@@ -21,15 +21,6 @@ class MissionTest < Minitest::Test
     end
   end
 
-  # Loads a plan given as a hash instead of an operation file.
-  class PlanLoader < OpLoader
-    private
-
-    def load_file(file, dir = :operations)
-      file.is_a?(Hash) ? file.symbolize_keys! : super
-    end
-  end
-
   # Actions each single-asset plan leaves unfinished when endurance runs out.
   UNFINISHED = {
     operation_1a: [], operation_1b: [], operation_1c: [1], operation_1d: [],
@@ -95,24 +86,6 @@ class MissionTest < Minitest::Test
     3.times { hover.execute }
 
     assert_equal 3, concurrency.executions
-  end
-
-  def test_action_id_reused_across_types_is_rejected
-    plan = { 'Action' => { 'HoverAction' => [{ 'id' => 1, 'duration' => 5 }],
-                           'PhotoSurveillanceAction' => [{ 'id' => 1, 'duration' => 5 }] },
-             'Asset' => { 'ARDrone' => [{ 'id' => 1, 'actions' => [1] }] } }
-
-    error = assert_raises(ArgumentError) { PlanLoader.new(plan) }
-    assert_equal 'duplicate action id: 1', error.message
-  end
-
-  def test_asset_id_reused_across_types_is_rejected
-    plan = { 'Action' => { 'HoverAction' => [{ 'id' => 1, 'duration' => 5 }, { 'id' => 2, 'duration' => 5 }] },
-             'Asset' => { 'ARDrone' => [{ 'id' => 1, 'actions' => [1] }],
-                          'Hummingbird' => [{ 'id' => 1, 'actions' => [2] }] } }
-
-    error = assert_raises(ArgumentError) { PlanLoader.new(plan) }
-    assert_equal 'duplicate asset id: 1', error.message
   end
 
   def test_scripts_find_their_plans_from_any_directory

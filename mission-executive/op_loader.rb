@@ -17,7 +17,10 @@ class OpLoader
             when :preconditions then id1 = observer_id
                                      id2 = subject_id
             end
-            @actions.fetch(id1).send("add_#{name.singularize}", @actions.fetch(id2))
+            action = @actions.fetch(id1)
+            raise ArgumentError, "action #{id1} takes no #{name}" unless action.respond_to?("add_#{name.singularize}")
+
+            action.send("add_#{name.singularize}", @actions.fetch(id2))
           end
         end
       end
@@ -61,7 +64,12 @@ class OpLoader
         raise ArgumentError, "duplicate asset id: #{id}" if @assets.key?(id)
 
         @assets[id] = type.to_c.new(id)
-        asset.fetch(:actions).each { |action| @assets[id].add_action(@actions.fetch(action)) }
+        asset.fetch(:actions).each do |action|
+          # A lidar action runs only through the hover action it is concurrent with.
+          raise ArgumentError, "asset #{id} cannot own action #{action}" unless @actions.fetch(action).is_a?(Action)
+
+          @assets[id].add_action(@actions.fetch(action))
+        end
       end
     end
   end
