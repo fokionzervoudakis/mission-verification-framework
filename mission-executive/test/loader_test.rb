@@ -74,4 +74,29 @@ class LoaderTest < Minitest::Test
     error = assert_raises(ArgumentError) { PlanLoader.new(plan) }
     assert_equal 'action 2 belongs to no asset', error.message
   end
+
+  def test_asset_with_an_unknown_action_is_rejected
+    plan = { 'Action' => { 'HoverAction' => [{ 'id' => 1, 'duration' => 5 }] },
+             'Asset' => { 'ARDrone' => [{ 'id' => 1, 'actions' => [1, 9] }] } }
+
+    error = assert_raises(ArgumentError) { PlanLoader.new(plan) }
+    assert_equal 'asset 1 refers to unknown action 9', error.message
+  end
+
+  def test_precondition_on_an_unknown_action_is_rejected
+    plan = { 'Action' => { 'HoverAction' => [{ 'id' => 1, 'duration' => 5, 'preconditions' => [9] }] },
+             'Asset' => { 'ARDrone' => [{ 'id' => 1, 'actions' => [1] }] } }
+
+    error = assert_raises(ArgumentError) { PlanLoader.new(plan) }
+    assert_equal 'action 1 refers to unknown action 9', error.message
+  end
+
+  def test_concurrency_with_an_unknown_action_is_rejected
+    plan = { 'Action' => { 'HoverAction' => [{ 'id' => 1, 'duration' => 5 }],
+                           'LidarAction' => [{ 'id' => 2, 'interval' => 5, 'concurrencies' => [9] }] },
+             'Asset' => { 'ARDrone' => [{ 'id' => 1, 'actions' => [1] }] } }
+
+    error = assert_raises(ArgumentError) { PlanLoader.new(plan) }
+    assert_equal 'action 2 refers to unknown action 9', error.message
+  end
 end

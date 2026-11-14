@@ -11,6 +11,10 @@ class OpLoader
       define_method("load_#{name}") do
         instance_variable_get("@#{name}").each_pair do |observer_id, subject_ids|
           subject_ids.each do |subject_id|
+            unless @actions.key?(subject_id)
+              raise ArgumentError, "action #{observer_id} refers to unknown action #{subject_id}"
+            end
+
             case name
             when :concurrencies then id1 = subject_id
                                      id2 = observer_id
@@ -78,6 +82,8 @@ class OpLoader
   end
 
   def assign(action, asset)
+    raise ArgumentError, "asset #{asset} refers to unknown action #{action}" unless @actions.key?(action)
+
     # A lidar action runs only through the hover action it is concurrent with.
     raise ArgumentError, "asset #{asset} cannot own action #{action}" unless @actions.fetch(action).is_a?(Action)
     raise ArgumentError, "action #{action} belongs to assets #{@owners[action]} and #{asset}" if @owners.key?(action)
