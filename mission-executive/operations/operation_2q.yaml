@@ -13,7 +13,7 @@ Action:
       duration: 41 # point of failure
       coordinates: [-112.1199316051625, 36.07823185748754]
     - id: 5
-      duration: 40
+      duration: 39
       preconditions: [4]
     - id: 6
       duration: 40

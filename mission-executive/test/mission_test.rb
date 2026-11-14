@@ -26,7 +26,7 @@ class MissionTest < Minitest::Test
   UNFINISHED = {
     operation_1c: [1], operation_1e: [2], operation_1f: [2], operation_2f: [2],
     operation_2g: [3, 4, 5], operation_2h: [3, 4, 5], operation_2i: [3, 4, 5],
-    operation_2l: [3], operation_2o: [3], operation_2q: [3, 6],
+    operation_2l: [3], operation_2o: [3], operation_2q: [3],
     operation_3c: [2], operation_3d: [2], operation_3f: [3], operation_3g: [3], operation_3j: [3],
     operation_3m: [4], operation_3n: [4], operation_3q: [4], operation_3r: [4]
   }.freeze
