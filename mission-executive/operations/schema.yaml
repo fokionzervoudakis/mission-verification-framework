@@ -16,6 +16,7 @@ mapping:
                 required: yes
               "duration":
                 type: int
+                range: { min: 1 }
                 required: yes
               "preconditions":
                 type: seq
@@ -36,6 +37,7 @@ mapping:
                 required: yes
               "interval":
                 type: int
+                range: { min: 1 }
                 required: yes
               "concurrencies":
                 type: seq
@@ -53,6 +55,7 @@ mapping:
                 required: yes
               "duration":
                 type: int
+                range: { min: 1 }
                 required: yes
               "preconditions":
                 type: seq
@@ -69,6 +72,7 @@ mapping:
                 required: yes
               "duration":
                 type: int
+                range: { min: 1 }
                 required: yes
               "preconditions":
                 type: seq
