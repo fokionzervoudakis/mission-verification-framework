@@ -15,8 +15,24 @@ class TemplateTest < Minitest::Test
     end
   end
 
+  # Model conjuncts no template generates: the series 3 sensor actions and
+  # the lidar properties of operation_5b.
+  UNGENERATED = {
+    %w[3a 3b 3c 3d] => ['d2=0'],
+    %w[3e 3f 3g 3h 3i 3j] => ['d3=0'],
+    %w[3k 3l 3m 3n 3o 3p 3q 3r] => ['d4=0'],
+    %w[5b] => ['nse4', 'spd1=0', '!mod(d1, ci4)=0', 'nse5', 'spd2=0', '!mod(d3, ci5)=0']
+  }.flat_map { |ids, conjuncts| ids.map { |id| ["operation_#{id}", conjuncts] } }.to_h.freeze
+
   Dir['operations/operation_*.yaml'].each do |file|
     operation = File.basename(file, '.yaml')
+
+    define_method("test_#{operation}_model_property_is_generated") do
+      templates = ['./property_template.rb', *('./survivability_template.rb' if OPERATIONS.include?(operation))]
+      generated = templates.flat_map { |template| conjuncts(generate(template, operation)) }
+
+      assert_equal UNGENERATED.fetch(operation, []), model_conjuncts(operation) - generated
+    end
 
     define_method("test_#{operation}_asset_commands_match_the_model") do
       assert_commands_in_model './asset_template.rb', operation
@@ -39,7 +55,11 @@ class TemplateTest < Minitest::Test
     generated = conjuncts(generate(template, operation))
     refute_empty generated
 
-    assert_empty generated - conjuncts(File.read(Dir["../models/*/#{operation}.pctl"].fetch(0)))
+    assert_empty generated - model_conjuncts(operation)
+  end
+
+  def model_conjuncts(operation)
+    conjuncts(File.read(Dir["../models/*/#{operation}.pctl"].fetch(0)))
   end
 
   def generate(template, operation)
