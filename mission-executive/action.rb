@@ -8,6 +8,8 @@ class Action
   include Subject
   include Observer
 
+  public :notify
+
   def initialize(id, duration)
     super()
     @id = id.to_s
@@ -30,7 +32,6 @@ class Action
 
   def execute_naively
     @duration -= 1
-    notify if completed?
   end
 end
 

@@ -2,3 +2,9 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   NewCops: enable
+
+# The tick loops are written out in full.
+Style/SymbolProc:
+  Exclude:
+    - 'mission-executive/asset.rb'
+    - 'mission-executive/mission.rb'

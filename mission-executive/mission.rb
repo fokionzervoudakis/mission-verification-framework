@@ -8,7 +8,16 @@ module Mission
     until assets.empty?
       assets.each do |asset|
         asset.execute
-        assets.delete(asset) if asset.completed?
+      end
+
+      # Every asset must work before any asset finishes the tick, so this
+      # loop cannot be merged with the one above.
+      assets.each do |asset| # rubocop:disable Style/CombinableLoops
+        asset.finish_tick
+      end
+
+      assets.delete_if do |asset|
+        asset.completed?
       end
     end
   end

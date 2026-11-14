@@ -21,14 +21,13 @@ class MissionTest < Minitest::Test
 
   # Actions each plan leaves unfinished when endurance runs out; every other
   # plan finishes them all. Recorded from the executive as it runs, not from
-  # the plans' "point of failure" comments, which it contradicts for 2d, 2g,
-  # 2h, 2t, 3f, 3m, 3q, 4c and 4e.
+  # the plans' "point of failure" comments, which it contradicts for 2d, 2f,
+  # 2g, 2h, 2t, 3c, 4c and 4e.
   UNFINISHED = {
-    operation_1c: [1], operation_1e: [2], operation_1f: [2], operation_2f: [2],
+    operation_1c: [1], operation_1e: [2], operation_1f: [2],
     operation_2g: [3, 4, 5], operation_2h: [3, 4, 5], operation_2i: [3, 4, 5],
     operation_2l: [3], operation_2o: [3], operation_2q: [3],
-    operation_3c: [2], operation_3d: [2], operation_3f: [3], operation_3g: [3], operation_3j: [3],
-    operation_3m: [4], operation_3n: [4], operation_3q: [4], operation_3r: [4]
+    operation_3d: [2], operation_3g: [3], operation_3j: [3], operation_3n: [4], operation_3r: [4]
   }.freeze
 
   Dir['operations/operation_*.yaml'].each do |file|
@@ -56,10 +55,12 @@ class MissionTest < Minitest::Test
     preconditions.each { |precondition| action.add_precondition(precondition) }
 
     preconditions.first.execute
+    preconditions.first.notify
     action.execute
     refute_predicate action, :completed?
 
     preconditions.last.execute
+    preconditions.last.notify
     action.execute
     assert_predicate action, :completed?
   end
@@ -70,6 +71,7 @@ class MissionTest < Minitest::Test
     dependents.each { |dependent| dependent.add_precondition(precondition) }
 
     precondition.execute
+    precondition.notify
     dependents.each(&:execute)
 
     dependents.each { |dependent| assert_predicate dependent, :completed? }
@@ -86,9 +88,20 @@ class MissionTest < Minitest::Test
     assert_equal 0, concurrency.executions
 
     precondition.execute
+    precondition.notify
     3.times { hover.execute }
 
     assert_equal 3, concurrency.executions
+  end
+
+  def test_action_keeps_its_turn_when_the_one_before_it_completes
+    asset = Class.new(Asset) { self.endurance = 2 }.new(1)
+    actions = [Action.new(1, 1), Action.new(2, 2)]
+    actions.each { |action| asset.add_action(action) }
+
+    Mission.execute([asset])
+
+    actions.each { |action| assert_predicate action, :completed? }
   end
 
   def test_scripts_find_their_plans_from_any_directory

@@ -14,9 +14,18 @@ class Asset
   def execute
     @actions.each do |action|
       action.execute
-      @actions.delete(action) if action.completed?
     end
     @endurance -= 1
+  end
+
+  def finish_tick
+    @actions.each do |action|
+      action.notify if action.completed?
+    end
+
+    @actions.delete_if do |action|
+      action.completed?
+    end
   end
 
   def completed?
