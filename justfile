@@ -41,7 +41,7 @@ lint:
 
 # Run all tasks
 [group('dev')]
-run: validate execute generate classify parse
+run: lint test validate execute generate classify parse
 
 # Validate mission plans
 [group('dev')]
