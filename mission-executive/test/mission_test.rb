@@ -21,23 +21,28 @@ class MissionTest < Minitest::Test
     end
   end
 
-  # Actions each single-asset plan leaves unfinished when endurance runs out.
+  # Actions each plan leaves unfinished when endurance runs out; every other
+  # plan finishes them all. Recorded from the executive as it runs, not from
+  # the plans' "point of failure" comments, which it contradicts for 2d, 2g,
+  # 2h, 2t, 3f, 3m, 3q, 4c and 4e.
   UNFINISHED = {
-    operation_1a: [], operation_1b: [], operation_1c: [1], operation_1d: [],
-    operation_1e: [2], operation_1f: [2], operation_1g: []
+    operation_1c: [1], operation_1e: [2], operation_1f: [2], operation_2f: [2],
+    operation_2g: [3, 4, 5], operation_2h: [3, 4, 5], operation_2i: [3, 4, 5],
+    operation_2l: [3], operation_2o: [3], operation_2q: [3, 6],
+    operation_3c: [2], operation_3d: [2], operation_3f: [3], operation_3g: [3], operation_3j: [3],
+    operation_3m: [4], operation_3n: [4], operation_3q: [4], operation_3r: [4]
   }.freeze
 
-  UNFINISHED.each_pair do |operation, unfinished|
+  Dir['operations/operation_*.yaml'].each do |file|
+    operation = File.basename(file, '.yaml')
+    unfinished = UNFINISHED.fetch(operation.to_sym, [])
+
     define_method("test_#{operation}_leaves_actions_#{unfinished}_unfinished") do
       loader = OpLoader.new(operation)
       Mission.execute(loader.assets)
 
-      assert_equal unfinished, loader.actions.reject { |_id, action| action.completed? }.keys
+      assert_equal unfinished, loader.actions.select { |_id, action| action.is_a?(Action) && !action.completed? }.keys
     end
-  end
-
-  Dir['operations/operation_*.yaml'].each do |file|
-    operation = File.basename(file, '.yaml')
 
     define_method("test_#{operation}_runs_to_an_end") do
       assets = OpLoader.new(operation).assets
