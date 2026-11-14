@@ -91,6 +91,8 @@ def count_tokens(path, *extensions)
   end
 end
 
-PATH = File.dirname(__FILE__)
-count_tokens("#{PATH}/../mission-executive/operations/operation_*", :yaml)
-count_tokens("#{PATH}/../models/operation_**/*", :pctl, :pm)
+if $PROGRAM_NAME == __FILE__
+  PATH = File.dirname(__FILE__)
+  count_tokens("#{PATH}/../mission-executive/operations/operation_*", :yaml)
+  count_tokens("#{PATH}/../models/operation_**/*", :pctl, :pm)
+end
