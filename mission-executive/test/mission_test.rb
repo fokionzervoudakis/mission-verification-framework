@@ -5,8 +5,6 @@ require 'timeout'
 
 require_relative '../mission'
 
-OpLoader.attr_reader :actions
-
 class MissionTest < Minitest::Test
   # Stands in for a concurrent action, counting how often it is driven.
   class Concurrency
@@ -41,7 +39,7 @@ class MissionTest < Minitest::Test
       loader = OpLoader.new(operation)
       Mission.execute(loader.assets)
 
-      assert_equal unfinished, loader.actions.select { |_id, action| action.is_a?(Action) && !action.completed? }.keys
+      assert_equal unfinished, loader.unfinished
     end
 
     define_method("test_#{operation}_runs_to_an_end") do
@@ -97,7 +95,7 @@ class MissionTest < Minitest::Test
     output, status = Open3.capture2(File.expand_path('mission.rb'), 'operation_1a', chdir: Dir.tmpdir)
     assert_predicate status, :success?
 
-    assert_equal "executing operation_1a...\n", output
+    assert_equal "executing operation_1a...\n  all actions completed\n", output
   end
 
   def test_filter_alone_selects_every_operation

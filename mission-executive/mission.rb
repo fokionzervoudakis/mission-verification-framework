@@ -17,6 +17,9 @@ end
 if $PROGRAM_NAME == __FILE__
   execute do |operation|
     puts "executing #{operation}..."
-    Mission.execute(OpLoader.new(operation).assets)
+    loader = OpLoader.new(operation)
+    Mission.execute(loader.assets)
+    unfinished = loader.unfinished
+    puts unfinished.empty? ? '  all actions completed' : "  unfinished actions: #{unfinished.join(', ')}"
   end
 end

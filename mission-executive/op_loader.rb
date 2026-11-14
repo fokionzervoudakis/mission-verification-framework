@@ -46,6 +46,11 @@ class OpLoader
     collections.each { |collection| send("load_#{collection}") }
   end
 
+  # Ids of the actions left unfinished.
+  def unfinished
+    @actions.select { |_id, action| action.is_a?(Action) && !action.completed? }.keys
+  end
+
   private
 
   def load_file(file, dir = :operations)
