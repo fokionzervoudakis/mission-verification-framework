@@ -24,6 +24,19 @@ class AssetTest < Minitest::Test
     refute_predicate photo, :completed?
   end
 
+  def test_mission_ends_when_an_asset_in_flight_has_to_wait
+    type = Class.new(Asset) { self.endurance = 9 }
+    actions = [Action.new(1, 1), Action.new(2, 1), Action.new(3, 2)]
+    actions[1].add_precondition(actions[2])
+    assets = [type.new(1), type.new(2)]
+    actions.first(2).each { |action| assets.first.add_action(action) }
+    assets.last.add_action(actions.last)
+
+    Mission.execute(assets)
+
+    assert_equal [true, false, false], actions.map(&:completed?)
+  end
+
   private
 
   # Runs two assets of the given endurance with one action each, the second

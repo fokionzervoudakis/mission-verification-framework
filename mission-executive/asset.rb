@@ -33,6 +33,13 @@ class Asset
     end
   end
 
+  # An asset that has started cannot wait: one of its actions must be able to run.
+  def stalled?
+    started? && @actions.none? do |action|
+      action.ready?
+    end
+  end
+
   def finish_tick
     @actions.each do |action|
       action.notify if action.completed?

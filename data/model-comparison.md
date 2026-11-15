@@ -2,7 +2,7 @@
 
 One row per plan: what the YAML marks, what PRISM computes for the model, and what the executive does.
 
-Model and executive agree on 54 of 58 plans and disagree on 4.
+Model and executive agree on all 58 plans.
 
 - **YAML mark**: the plan has a "point of failure" comment.
 - **PRISM: mission succeeds**: the probability that the property in the plan's `.pctl` file holds. 1.0 is always, 0.0 is never.
@@ -26,23 +26,23 @@ Every state a model can reach and every step between them is in [model-states](m
 | operation_2a |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2b |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2c |  | 1.0 | 1.0 | all actions completed | yes |
-| operation_2d | point of failure | 0.0 | 0.0 | all actions completed | no |
+| operation_2d | point of failure | 0.0 | 0.0 | unfinished actions: 2, 3 | yes |
 | operation_2e |  | 1.0 | 1.0 | all actions completed | yes |
-| operation_2f | point of failure | 0.0 | 0.0 | all actions completed | no |
+| operation_2f | point of failure | 0.0 | 0.0 | unfinished actions: 2, 4 | yes |
 | operation_2g |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2h |  | 1.0 | 1.0 | all actions completed | yes |
-| operation_2i | point of failure | 0.0 | 0.0 | all actions completed | no |
+| operation_2i | point of failure | 0.0 | 0.0 | unfinished actions: 3, 4, 5 | yes |
 | operation_2j |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2k |  | 1.0 | 1.0 | all actions completed | yes |
-| operation_2l | point of failure | 0.0 | 0.0 | unfinished actions: 3 | yes |
+| operation_2l | point of failure | 0.0 | 0.0 | unfinished actions: 3, 5 | yes |
 | operation_2m |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2n |  | 1.0 | 1.0 | all actions completed | yes |
-| operation_2o | point of failure | 0.0 | 0.0 | unfinished actions: 3 | yes |
+| operation_2o | point of failure | 0.0 | 0.0 | unfinished actions: 3, 5, 6 | yes |
 | operation_2p |  | 1.0 | 1.0 | all actions completed | yes |
-| operation_2q | point of failure | 0.0 | 0.0 | unfinished actions: 3 | yes |
+| operation_2q | point of failure | 0.0 | 0.0 | unfinished actions: 2, 3, 4, 5, 6 | yes |
 | operation_2r |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2s |  | 1.0 | 1.0 | all actions completed | yes |
-| operation_2t | point of failure | 0.0 | 0.0 | all actions completed | no |
+| operation_2t | point of failure | 0.0 | 0.0 | unfinished actions: 1, 2, 4, 5 | yes |
 | operation_2u |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2v |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_2w |  | 1.0 | 1.0 | all actions completed | yes |

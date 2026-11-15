@@ -20,6 +20,10 @@ module Mission
       assets.delete_if do |asset|
         asset.completed?
       end
+
+      # The kinetic actions of an asset run without a break, so a mission
+      # fails as soon as an asset in flight has to wait for another asset.
+      break if assets.any? { |asset| asset.stalled? }
     end
   end
 end
