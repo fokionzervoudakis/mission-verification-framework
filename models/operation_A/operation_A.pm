@@ -72,7 +72,7 @@ module PhotoSurveillanceAction5
     r5 : bool init false;         // running
 
     [asst1] d3>0               -> true;
-    [asst1] d3=0 & d5>0 & e1>0 -> (d5'=d5-1)&(r5'=true);
+    [asst1] d3=0 & d5>0 & e2>0 -> (d5'=d5-1)&(r5'=true);
     [asst1]        d5=0        -> (r5'=false);
 
 endmodule
