@@ -14,6 +14,18 @@ class ModelTest < Minitest::Test
 
       assert_equal planned(YAML.safe_load_file(file)).sort, constants.sort
     end
+
+    define_method("test_#{operation}_shared_step_is_named_after_a_primary_asset") do
+      steps = File.read(Dir["../models/*/#{operation}.pm"].fetch(0)).scan(/\[asst(\d+)\]/).flatten.uniq.map(&:to_i)
+      primary = primary_assets(YAML.safe_load_file("classifications/#{operation}.yaml"))
+
+      if primary.empty?
+        assert_empty steps
+      else
+        assert_equal 1, steps.size
+        assert_includes primary, steps.first
+      end
+    end
   end
 
   private
@@ -29,5 +41,10 @@ class ModelTest < Minitest::Test
     end
 
     actions.merge(assets.to_h)
+  end
+
+  def primary_assets(classification)
+    assets = classification.fetch('Asset', {}).values.flatten
+    assets.filter_map { |asset| asset['id'] if asset['type'] == 'primary_asset' }
   end
 end
