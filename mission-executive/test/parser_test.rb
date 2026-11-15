@@ -16,6 +16,14 @@ class ParserTest < Minitest::Test
     assert_equal "plan.yaml,loc=5,tokens=19\n", count(:yaml, plan)
   end
 
+  def test_yaml_tokens_include_the_coordinates_key
+    without = count(:yaml, "- id: 1\n")
+    with = count(:yaml, "- id: 1\n  coordinates: [-112.13, 36.08]\n")
+
+    # the key, the colon, two brackets, the comma, the minus sign and two numbers
+    assert_equal 8, with[/tokens=(\d+)/, 1].to_i - without[/tokens=(\d+)/, 1].to_i
+  end
+
   def test_pctl_tokens
     assert_equal "plan.pctl,loc=1,tokens=13\n", count(:pctl, "P=? [ F d1=0 & d2=0 ]\n")
   end

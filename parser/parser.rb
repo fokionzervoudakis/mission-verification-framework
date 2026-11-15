@@ -48,7 +48,7 @@ end
   comments: ['#'],
   keywords: [
     /^Action/, :ARDrone, :Asset, :actions,
-    :concurrencies,
+    :concurrencies, :coordinates,
     :duration,
     :HoverAction, :Hummingbird,
     /id:/, :interval,
