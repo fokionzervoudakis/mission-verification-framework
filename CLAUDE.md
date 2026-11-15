@@ -35,7 +35,7 @@ Known exceptions are in `docs/improve.md`.
 
 ## Tests are not enough
 
-`just test` does not check action guards, plan against Prolog, "point of failure" comments, the primary asset, the ontology (apart from endurance limits), or generator output that goes missing. Check these by reading the files.
+`just test` does not check action guards, "point of failure" comments, the primary asset, the ontology (apart from endurance limits), or generator output that goes missing. Check these by reading the files.
 
 ## Regenerate after a change
 
