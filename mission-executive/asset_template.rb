@@ -40,6 +40,12 @@ module AssetTemplate
       end
   end
 
+  # One primary asset stands for a whole plan, so the choice made for one
+  # plan must not carry over to the next.
+  def self.reset
+    @asset = nil
+  end
+
   def self.generate(asset)
     commands = String.new
 
@@ -95,6 +101,7 @@ if $PROGRAM_NAME == __FILE__
     puts('=' * 50)
     puts "asset modules for #{operation}..."
     puts('-' * 50)
+    AssetTemplate.reset
     ClassLoader.new(operation).assets.each { |asset| AssetTemplate.generate asset }
   end
 end

@@ -137,5 +137,6 @@ execute do |operation|
   puts('=' * 50)
   puts "survivability constructs for #{operation}..."
   puts('-' * 50)
+  AssetTemplate.reset
   ThreatLoader.new(operation).assets.each { |asset| SurvivabilityTemplate.generate(asset) }
 end
