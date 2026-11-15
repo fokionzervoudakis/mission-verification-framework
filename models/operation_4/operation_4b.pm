@@ -2,7 +2,7 @@ dtmc
 
 const int max_e1 = 120; // maximum endurance
 const int max_d1 = 30;  // maximum duration
-const int max_d2 = 30;  // maximum duration
+const int max_d2 = 30;  // maximum duration and point of failure: enters the threat area with no sensor action
 const int max_d3 = 30;  // maximum duration
 const int max_d4 = 30;  // maximum duration
 

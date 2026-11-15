@@ -66,7 +66,7 @@ Every state a model can reach and every step between them is in [model-states](m
 | operation_3q |  | 1.0 | 1.0 | all actions completed | yes |
 | operation_3r | point of failure | 0.0 | 0.0 | unfinished actions: 4 | yes |
 | operation_4a |  | 1.0 | 1.0 | all actions completed | yes |
-| operation_4b |  | 0.0 | 1.0 | all actions completed | yes |
+| operation_4b | point of failure | 0.0 | 1.0 | all actions completed | yes |
 | operation_4c | point of failure | 0.0 | 1.0 | all actions completed | yes |
 | operation_4d |  | 0.4948 | 1.0 | all actions completed | yes |
 | operation_4e | point of failure | 0.0 | 1.0 | all actions completed | yes |
