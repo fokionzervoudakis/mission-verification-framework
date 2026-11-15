@@ -64,10 +64,23 @@ classify:
 
 # PRISM must be installed in ~/prism
 # Verify the PRISM models
-[group('dev')]
+[group('prism')]
 verify:
     @echo "{{RED}}{{BOLD}}Verifying the PRISM models...{{RESET}}"
     @cd scripts/ && PRISM=~/prism/bin/prism ./model_results.rb
+
+# PRISM must be installed in ~/prism
+# Export the states and transitions of the PRISM models
+[group('prism')]
+states:
+    @echo "{{RED}}{{BOLD}}Exporting model states and transitions...{{RESET}}"
+    @mkdir -p data/model-states
+    @for model in models/*/*.pm; do \
+        name=$(basename $model .pm); \
+        ~/prism/bin/prism $model \
+            -exportstates data/model-states/$name.sta \
+            -exporttrans data/model-states/$name.tra > /dev/null || exit 1; \
+    done
 
 # Execute the parser
 [group('dev')]

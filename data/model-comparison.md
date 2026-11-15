@@ -12,6 +12,8 @@ Model and executive agree on 54 of 58 plans and disagree on 4.
 
 Every PRISM result, including the two extra properties of `operation_5b`, is in [model-results.csv](model-results.csv).
 
+Every state a model can reach and every step between them is in [model-states](model-states): the `.sta` file lists the states and the `.tra` file lists the transitions as "from, to, probability". They show where a model deadlocks. `just states` regenerates them.
+
 | Plan | YAML mark | PRISM: mission succeeds | PRISM: actions complete | Executive says | Agree |
 | --- | --- | --- | --- | --- | --- |
 | operation_1a |  | 1.0 | 1.0 | all actions completed | yes |

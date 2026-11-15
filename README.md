@@ -59,6 +59,12 @@ Verify the *PRISM* models. Requires [PRISM](https://www.prismmodelchecker.org).
 just verify
 ```
 
+Export the states (`.sta`) and transitions (`.tra`) of the *PRISM* models to `data/model-states/`. Requires [PRISM](https://www.prismmodelchecker.org).
+
+```bash
+just states
+```
+
 Execute the parser.
 
 ```bash
