@@ -49,11 +49,6 @@ Style/CombinableLoops:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 1
-Style/FileOpen:
-  Exclude:
-    - 'parser/parser.rb'
-
 # Offense count: 18
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.

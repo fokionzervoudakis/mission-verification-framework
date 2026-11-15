@@ -75,7 +75,7 @@ def count_tokens(path, *extensions)
 
       count = 0
 
-      File.open(file).each do |line|
+      File.foreach(file) do |line|
         line = line.strip_comments(tokens[:comments][0]) if tokens.key?(:comments)
         tokens.each_pair do |_key, value|
           value.each do |token|
