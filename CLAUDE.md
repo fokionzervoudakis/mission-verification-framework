@@ -19,7 +19,7 @@ A research project that verifies UAV mission plans. Each mission exists in sever
 - **Plan and Prolog**: ownership and preconditions of kinetic actions.
 - **Classification and Prolog**: every class in a classification file is confirmed by the Prolog rules.
 - **Classification and model**: the model's shared step is named after one of the primary assets (`asst1` is asset 1). A plan can have several primary assets; the model uses one.
-- **Executive and model**: whether all actions complete.
+- **Executive and model**: which actions are left unfinished.
 - **Ontology and plan**: for the missions with an ontology file, the actions, owning asset, preconditions and lidar concurrency.
 - **Ontology and the rest**: the endurance limit of each asset type (`asset_data.yaml` and the schema), vulnerability and risk threshold (classification and model), interval calibration factors and freeway speed probabilities (`operation_5b` model), and the classes behind the Prolog rules.
 
