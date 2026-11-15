@@ -11,6 +11,7 @@ A research project that verifies UAV mission plans. Each mission exists in sever
 | Prolog | `prolog-kb/operation_*.pl` (16 plans only) |
 | Classification | `mission-executive/classifications/operation_*.yaml` |
 | Executive | `mission-executive/mission.rb`, `asset.rb`, `action.rb` |
+| Ontology | `ontology/*.owl` (domain classes and limits; missions 4a, 4b, 4c, 5a, 5b and A) |
 
 ## What must agree
 
@@ -19,6 +20,8 @@ A research project that verifies UAV mission plans. Each mission exists in sever
 - **Classification and Prolog**: every class in a classification file is confirmed by the Prolog rules.
 - **Classification and model**: the model's shared step is named after one of the primary assets (`asst1` is asset 1). A plan can have several primary assets; the model uses one.
 - **Executive and model**: whether all actions complete.
+- **Ontology and plan**: for the missions with an ontology file, the actions, owning asset, preconditions and lidar concurrency.
+- **Ontology and the rest**: the endurance limit of each asset type (`asset_data.yaml` and the schema), vulnerability and risk threshold (classification and model), interval calibration factors and freeway speed probabilities (`operation_5b` model), and the classes behind the Prolog rules.
 
 Known exceptions are in `docs/improve.md`.
 
@@ -32,7 +35,7 @@ Known exceptions are in `docs/improve.md`.
 
 ## Tests are not enough
 
-`just test` does not check action guards, plan against Prolog, "point of failure" comments, the primary asset, or generator output that goes missing. Check these by reading the files.
+`just test` does not check action guards, plan against Prolog, "point of failure" comments, the primary asset, the ontology (apart from endurance limits), or generator output that goes missing. Check these by reading the files.
 
 ## Regenerate after a change
 
