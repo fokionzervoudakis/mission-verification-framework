@@ -3,22 +3,42 @@ require 'open3'
 
 require_relative '../mission'
 
-# The executive against the PRISM results that just verify writes to
-# data/model-results.csv.
+# The executive against the model states that just states writes to
+# data/model-states/.
 class ComparisonTest < Minitest::Test
-  # The probability that the actions of each plan complete.
-  COMPLETE = File.readlines('../data/model-results.csv').drop(1).each_with_object({}) do |line, complete|
-    operation, probability = line.match(/^(\w+),".*",[\d.]+,([\d.]*),/).captures
-    complete[operation] ||= probability.to_f
-  end.freeze
+  # The end states of a model: those with no step to another state.
+  def self.end_states(sta)
+    variables, *states = File.readlines(sta).drop(1).map { |line| line[/\((.*)\)/, 1].split(',') }
+    steps = File.readlines(sta.sub('.sta', '.tra')).drop(2).map { |line| line.split.first(2) }
+    moving = steps.reject { |from, to| from == to }.map { |from, _to| from.to_i }
 
-  COMPLETE.each_pair do |operation, probability|
-    define_method("test_#{operation}_agrees_with_the_model") do
+    states.reject.with_index { |_state, index| moving.include?(index) }.map { |state| variables.zip(state).to_h }
+  end
+
+  # The actions a model leaves unfinished: those with duration left in an end
+  # state.
+  def self.unfinished(sta)
+    end_states(sta).map do |state|
+      durations = state.select { |name, value| name.match?(/^d\d+$/) && value.to_i.positive? }
+      durations.keys.map { |name| name.delete('d').to_i }
+    end.uniq
+  end
+
+  Dir['../data/model-states/*.sta'].each do |sta|
+    operation = File.basename(sta, '.sta')
+
+    define_method("test_#{operation}_leaves_the_same_actions_unfinished_as_the_model") do
       loader = OpLoader.new(operation)
       Mission.execute(loader.assets)
 
-      assert_equal probability.positive?, loader.unfinished.empty?
+      assert_equal [loader.unfinished], self.class.unfinished(sta)
     end
+  end
+
+  def test_every_plan_has_model_states
+    plans = Dir['operations/operation_*.yaml'].map { |file| File.basename(file, '.yaml') }
+
+    assert_equal plans.sort, Dir['../data/model-states/*.sta'].map { |sta| File.basename(sta, '.sta') }.sort
   end
 
   def test_comparison_table_is_up_to_date
