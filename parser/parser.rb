@@ -49,7 +49,7 @@ end
   keywords: [
     /^Action/, :ARDrone, :Asset, :actions,
     :concurrencies, :coordinates,
-    :duration,
+    :duration, :endurance,
     :HoverAction, :Hummingbird,
     /id:/, :interval,
     :LidarAction,

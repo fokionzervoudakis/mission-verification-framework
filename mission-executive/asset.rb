@@ -1,9 +1,12 @@
 class Asset
   class << self; attr_accessor :endurance end
 
-  def initialize(id)
+  attr_reader :endurance
+
+  # A plan may give an asset its own endurance; otherwise its type decides.
+  def initialize(id, endurance = nil)
     @id = id.to_s
-    @endurance = self.class.endurance
+    @endurance = endurance || self.class.endurance
     @actions = []
   end
 

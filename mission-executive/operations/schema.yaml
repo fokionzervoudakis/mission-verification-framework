@@ -95,6 +95,9 @@ mapping:
               "id":
                 type: int
                 required: yes
+              "endurance":
+                type: int
+                range: { max: 70 }
               "actions":
                 type: seq
                 required: yes
@@ -109,6 +112,9 @@ mapping:
               "id":
                 type: int
                 required: yes
+              "endurance":
+                type: int
+                range: { max: 120 }
               "actions":
                 type: seq
                 required: yes

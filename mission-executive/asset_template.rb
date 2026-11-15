@@ -59,7 +59,7 @@ module AssetTemplate
 
     puts %(
 module #{asset.class}#{asset.id}
-  e#{asset.id} : [0..#{asset.class.endurance}] init #{asset.class.endurance};
+  e#{asset.id} : [0..#{asset.endurance}] init #{asset.endurance};
   #{commands}
   [#{last_action_name asset.last}] e#{asset.id}=0 | d#{asset.last.id}=0 -> true;
 endmodule

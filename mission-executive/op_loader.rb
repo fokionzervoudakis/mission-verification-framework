@@ -70,15 +70,20 @@ class OpLoader
     end
   end
 
-  def load_assets
+  # The endurance an asset of each type has unless its plan says otherwise.
+  def load_endurances
     load_file(:asset_data).each_pair { |type, asset| type.to_c.endurance = asset.fetch(:endurance) }
+  end
+
+  def load_assets
+    load_endurances
     @owners = {}
     @op_file.fetch(:Asset).each_pair do |type, assets|
       assets.symbolize_keys!.each do |asset|
         id = asset.fetch(:id)
         raise ArgumentError, "duplicate asset id: #{id}" if @assets.key?(id)
 
-        @assets[id] = type.to_c.new(id)
+        @assets[id] = type.to_c.new(id, asset[:endurance])
         asset.fetch(:actions).each { |action| assign(action, id) }
       end
     end

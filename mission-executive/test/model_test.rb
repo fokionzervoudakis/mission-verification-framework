@@ -25,7 +25,7 @@ class ModelTest < Minitest::Test
       action.key?('interval') ? ["i#{action['id']}", action['interval']] : ["max_d#{action['id']}", action['duration']]
     end
     assets = plan.fetch('Asset').flat_map do |type, list|
-      list.map { |asset| ["max_e#{asset['id']}", ENDURANCES.fetch(type)] }
+      list.map { |asset| ["max_e#{asset['id']}", asset.fetch('endurance', ENDURANCES.fetch(type))] }
     end
 
     actions.merge(assets.to_h)

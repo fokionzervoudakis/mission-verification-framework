@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 
-require_relative '../op_loader'
+require_relative '../mission'
 
 class LoaderTest < Minitest::Test
   # Loads a plan given as a hash instead of an operation file.
@@ -10,6 +10,19 @@ class LoaderTest < Minitest::Test
     def load_file(file, dir = :operations)
       file.is_a?(Hash) ? file.symbolize_keys! : super
     end
+  end
+
+  def test_asset_endurance_in_a_plan_replaces_the_default_of_its_type
+    plan = { 'Action' => { 'HoverAction' => [{ 'id' => 1, 'duration' => 5 }, { 'id' => 2, 'duration' => 5 }] },
+             'Asset' => { 'Hummingbird' => [{ 'id' => 1, 'endurance' => 4, 'actions' => [1] },
+                                            { 'id' => 2, 'actions' => [2] }] } }
+    loader = PlanLoader.new(plan)
+
+    assert_equal [4, 120], loader.assets.map(&:endurance)
+
+    Mission.execute(loader.assets)
+
+    assert_equal [1], loader.unfinished
   end
 
   def test_action_id_reused_across_types_is_rejected
