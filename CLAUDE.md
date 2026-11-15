@@ -17,7 +17,7 @@ A research project that verifies UAV mission plans. Each mission exists in sever
 - **Plan and model**: actions, owning asset, preconditions, durations, intervals, endurance, and "point of failure" comments.
 - **Plan and Prolog**: ownership and preconditions of kinetic actions.
 - **Classification and Prolog**: every class in a classification file is confirmed by the Prolog rules.
-- **Classification and model**: the primary asset names the model's shared step (`asst1` is asset 1).
+- **Classification and model**: the model's shared step is named after one of the primary assets (`asst1` is asset 1). A plan can have several primary assets; the model uses one.
 - **Executive and model**: whether all actions complete.
 
 Known exceptions are in `docs/improve.md`.
