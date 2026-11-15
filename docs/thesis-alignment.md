@@ -1,6 +1,6 @@
 # Thesis alignment
 
-An audit of the commits up to `7ec6e3f` against the thesis this repository supports: *Cascading Verification: An Integrated Method for Domain-Specific Model Checking* (University College London).
+An audit of the commits against the thesis this repository supports: *Cascading Verification: An Integrated Method for Domain-Specific Model Checking* (University College London).
 
 No commit changes a PRISM result. Mission A still succeeds with probability 0.299, and Mission 5b still gives 0.651 and 0.625.
 
