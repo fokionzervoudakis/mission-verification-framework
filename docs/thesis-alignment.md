@@ -11,6 +11,7 @@ No commit changes a PRISM result. Mission A still succeeds with probability 0.29
 | Two-phase tick in the executive | `37eb61b` | Yes, follows the models | Yes, fixes a bug |
 | No endurance before an asset starts | `cecd2d6` | Yes, follows the models | Yes |
 | Sensor actions only while flying | `249e012` | Yes, follows the models | Yes |
+| Mission ends when an asset in flight has to wait | `bf80691` | Yes (sections 5.3 and 6.1.3) | Yes |
 | Unfinished actions reported | `c4b134f` | Not covered | Yes |
 | Duplicate, unknown and misowned ids rejected | `9c24e07`, `3cd5b1d`, `8f94cdd` | Yes (section 6.1.2) | Yes |
 | Misused lidar actions rejected | `9b7b955`, `ba63576` | Yes (section 4.1.3) | Yes |
@@ -33,7 +34,3 @@ No commit changes a PRISM result. Mission A still succeeds with probability 0.29
 - **Token figures.** The thesis reports token ratios of 4.490 for all plans and 5.992 for tactical plans; the repository gives 4.271 and 5.636.
 - **Marked plans.** The thesis counts 18 plans seeded with errors; 19 now carry a "point of failure" comment.
 - **Appendix listings.** The appendices are a snapshot; the schema, the `operation_2u` model and the Ruby code have moved on.
-
-## Still open
-
-The thesis says the kinetic actions of an asset must run without a break (sections 5.3 and 6.1.3). The models of `operation_2d`, `2f`, `2i` and `2t` fail for that reason; the executive completes them. See [improve.md](improve.md).
