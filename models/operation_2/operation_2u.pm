@@ -33,7 +33,7 @@ module HoverAction2
 
     d2 : [0..max_d2] init max_d2; // duration
 
-    [actn2] d1=0 & d4=0 & d2>0 & e1>0 -> (d2'=d2-1);
+    [actn2] d1=0 & d5=0 & d2>0 & e1>0 -> (d2'=d2-1);
 
 endmodule
 
