@@ -4,7 +4,7 @@ require 'tmpdir'
 require_relative '../../parser/parser'
 
 class ParserTest < Minitest::Test
-  def test_yaml_tokens_exclude_comment_text
+  def test_yaml_tokens_exclude_comments
     plan = <<~YAML
       Action:
         HoverAction:
@@ -13,7 +13,7 @@ class ParserTest < Minitest::Test
             preconditions: [2, 3]
     YAML
 
-    assert_equal "plan.yaml,loc=5,tokens=19\n", count(:yaml, plan)
+    assert_equal "plan.yaml,loc=5,tokens=18\n", count(:yaml, plan)
   end
 
   def test_yaml_tokens_include_the_coordinates_key
@@ -28,7 +28,7 @@ class ParserTest < Minitest::Test
     assert_equal "plan.pctl,loc=1,tokens=13\n", count(:pctl, "P=? [ F d1=0 & d2=0 ]\n")
   end
 
-  def test_dtmc_tokens_exclude_comment_text
+  def test_dtmc_tokens_exclude_comments
     model = <<~PRISM
       dtmc
 
@@ -40,7 +40,7 @@ class ParserTest < Minitest::Test
       endmodule
     PRISM
 
-    assert_equal "plan.pm,loc=8,tokens=36\n", count(:pm, model)
+    assert_equal "plan.pm,loc=8,tokens=35\n", count(:pm, model)
   end
 
   private

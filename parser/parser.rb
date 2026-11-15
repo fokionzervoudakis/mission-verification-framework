@@ -4,7 +4,7 @@ class String
   def strip_comments(marker)
     if include?(marker)
       index = (self =~ Regexp.new(marker))
-      self[0, index + marker.size]
+      self[0, index]
     else
       self
     end
