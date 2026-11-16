@@ -26,10 +26,11 @@ class Asset
     @endurance -= 1 if started?
   end
 
-  # An asset uses no endurance until one of its actions can run.
+  # An asset uses no endurance until one of its actions can run. A sensor
+  # action cannot run on its own, so it does not start its asset.
   def started?
     @started ||= @actions.any? do |action|
-      action.ready?
+      !action.is_a?(SensorAction) && action.ready?
     end
   end
 

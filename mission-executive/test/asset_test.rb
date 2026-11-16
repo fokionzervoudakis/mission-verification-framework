@@ -12,6 +12,18 @@ class AssetTest < Minitest::Test
     run_pair(1, 2, 1).each { |action| refute_predicate action, :completed? }
   end
 
+  def test_idle_sensor_action_does_not_start_its_asset
+    type = Class.new(Asset) { self.endurance = 10 }
+    actions = [TraversePathSegmentAction.new(1, 8), TraversePathSegmentAction.new(2, 5)]
+    actions.last.add_precondition(actions.first)
+    assets = actions.map { |action| type.new(1).tap { |asset| asset.add_action(action) } }
+    assets.last.add_action(PhotoSurveillanceAction.new(3, 2))
+
+    Mission.execute(assets)
+
+    actions.each { |action| assert_predicate action, :completed? }
+  end
+
   def test_sensor_action_stops_when_no_kinetic_action_runs
     asset = Class.new(Asset) { self.endurance = 3 }.new(1)
     hover = HoverAction.new(1, 1)
