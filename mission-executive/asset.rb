@@ -34,9 +34,11 @@ class Asset
     end
   end
 
-  # An asset that has started cannot wait: one of its actions must be able to run.
+  # An asset that has started cannot wait: while it has kinetic actions left,
+  # one of them must be able to run. A sensor action does not keep it flying.
   def stalled?
-    started? && @actions.none? do |action|
+    kinetic = @actions.grep_v(SensorAction)
+    started? && kinetic.any? && kinetic.none? do |action|
       action.ready?
     end
   end

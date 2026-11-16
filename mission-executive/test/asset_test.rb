@@ -49,6 +49,31 @@ class AssetTest < Minitest::Test
     assert_equal [true, false, false], actions.map(&:completed?)
   end
 
+  def test_idle_sensor_action_does_not_hide_a_wait
+    type = Class.new(Asset) { self.endurance = 20 }
+    actions = [TraversePathSegmentAction.new(1, 8), TraversePathSegmentAction.new(2, 2),
+               TraversePathSegmentAction.new(3, 2)]
+    actions.last.add_precondition(actions.first)
+    assets = [type.new(1), type.new(2)]
+    assets.first.add_action(actions.first)
+    [*actions.last(2), PhotoSurveillanceAction.new(4, 15)].each { |action| assets.last.add_action(action) }
+
+    Mission.execute(assets)
+
+    assert_equal [false, true, false], actions.map(&:completed?)
+  end
+
+  def test_asset_with_only_a_sensor_action_left_does_not_end_the_mission
+    type = Class.new(Asset) { self.endurance = 9 }
+    actions = [TraversePathSegmentAction.new(1, 5), TraversePathSegmentAction.new(2, 1)]
+    assets = actions.map { |action| type.new(1).tap { |asset| asset.add_action(action) } }
+    assets.last.add_action(PhotoSurveillanceAction.new(3, 3))
+
+    Mission.execute(assets)
+
+    actions.each { |action| assert_predicate action, :completed? }
+  end
+
   private
 
   # Runs two assets of the given endurance with one action each, the second
