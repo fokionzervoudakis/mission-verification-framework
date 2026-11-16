@@ -27,8 +27,10 @@ class PlanTest < Minitest::Test
   end
 
   # A plan may give an asset its own endurance, up to the limit of its type.
+  # An asset with no endurance never runs out of it.
   { 'endurance: 100' => /#0: valid\.\n/,
-    'endurance: 121' => /#0: INVALID\n.*too large/ }.each_pair do |endurance, result|
+    'endurance: 121' => /#0: INVALID\n.*too large/,
+    'endurance: 0' => /#0: INVALID\n.*too small/ }.each_pair do |endurance, result|
     define_method("test_asset_#{endurance.delete(':').tr(' ', '_')}_is_checked_by_the_schema") do
       Tempfile.create(%w[plan .yaml]) do |file|
         plan = File.read('operations/operation_5a.yaml')
