@@ -35,7 +35,7 @@ Known exceptions are in `docs/improve.md`.
 
 ## Tests are not enough
 
-`just test` does not check "point of failure" comments, the ontology (apart from endurance limits), or generator output that goes missing. Check these by reading the files.
+`just test` does not check the ontology (apart from endurance limits) or generator output that goes missing. Check these by reading the files.
 
 ## Regenerate after a change
 

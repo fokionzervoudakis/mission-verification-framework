@@ -47,6 +47,16 @@ class ModelTest < Minitest::Test
     end
   end
 
+  def test_points_of_failure_are_on_the_same_actions
+    Dir['operations/operation_*.yaml'].each do |file|
+      operation = File.basename(file, '.yaml')
+      model = File.read(Dir["../models/*/#{operation}.pm"].fetch(0))
+      marked = model.scan(/^const int max_d(\d+)\b.*point of failure/).flatten.map(&:to_i)
+
+      assert_equal failure_points(File.read(file)), marked, operation
+    end
+  end
+
   private
 
   # The guard, as sorted conjuncts, of each command that counts an action down.
@@ -62,6 +72,16 @@ class ModelTest < Minitest::Test
     preconditions = action.fetch('preconditions', []) - unguarded.fetch(id, [])
 
     [*preconditions.map { |precondition| "d#{precondition}=0" }, "d#{id}>0", "e#{owner.fetch('id')}>0"].sort
+  end
+
+  # The ids of the actions a plan marks as a point of failure. The mark is a
+  # YAML comment, so the plan is read as text.
+  def failure_points(plan)
+    id = nil
+    plan.each_line.filter_map do |line|
+      id = line[/- id: (\d+)/, 1]&.to_i || id
+      id if line.include?('point of failure')
+    end
   end
 
   # The constants a plan calls for: a duration or interval for each action
