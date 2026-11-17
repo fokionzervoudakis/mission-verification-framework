@@ -1,12 +1,31 @@
 require 'minitest/autorun'
 require 'yaml'
+require_relative 'prism_source'
 
 # The hand-written constants of each model against the plan they stand for.
 class ModelTest < Minitest::Test
+  include PrismSource
+
   ENDURANCES = YAML.safe_load_file('operations/asset_data.yaml').transform_values { |asset| asset.fetch('endurance') }
+
+  # Preconditions a model enforces without a guard: the shared step cannot
+  # fire until the leading action is over.
+  UNGUARDED = %w[operation_2g operation_2h operation_2i].to_h { |operation| [operation, { 4 => [1] }] }.freeze
 
   Dir['operations/operation_*.yaml'].each do |file|
     operation = File.basename(file, '.yaml')
+
+    define_method("test_#{operation}_action_guards_match_the_plan") do
+      plan = YAML.safe_load_file(file)
+      model = expand(File.read(Dir["../models/*/#{operation}.pm"].fetch(0)))
+
+      plan.fetch('Action').values.flatten.select { |action| action.key?('duration') }.each do |action|
+        guards = guards(model, action['id'])
+
+        refute_empty guards
+        guards.each { |guard| assert_equal planned_guard(plan, action, UNGUARDED.fetch(operation, {})), guard }
+      end
+    end
 
     define_method("test_#{operation}_model_constants_match_the_plan") do
       model = File.read(Dir["../models/*/#{operation}.pm"].fetch(0))
@@ -29,6 +48,21 @@ class ModelTest < Minitest::Test
   end
 
   private
+
+  # The guard, as sorted conjuncts, of each command that counts an action down.
+  def guards(model, id)
+    model.scan(/^ *\[\w*\] *(.*?) *-> *\(d#{id}'=d#{id}-1\)/).flatten.map { |guard| guard.split(/ *& */).sort }
+  end
+
+  # The guard a plan calls for: the action's preconditions are over, the
+  # action is not, and its owner has endurance left.
+  def planned_guard(plan, action, unguarded)
+    id = action['id']
+    owner = plan.fetch('Asset').values.flatten.find { |asset| asset.fetch('actions', []).include?(id) }
+    preconditions = action.fetch('preconditions', []) - unguarded.fetch(id, [])
+
+    [*preconditions.map { |precondition| "d#{precondition}=0" }, "d#{id}>0", "e#{owner.fetch('id')}>0"].sort
+  end
 
   # The constants a plan calls for: a duration or interval for each action
   # and an endurance for each asset.
