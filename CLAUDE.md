@@ -44,7 +44,7 @@ Known exceptions are in `docs/improve.md`.
 | `data/model-results.csv` | `just verify` |
 | `data/model-states/` | `just states` |
 | `data/mission-metrics.csv` | `just parse` |
-| `data/model-comparison.md` | Edit by hand |
+| `docs/model-comparison.md` | Edit by hand |
 
 ## Intentional gaps
 

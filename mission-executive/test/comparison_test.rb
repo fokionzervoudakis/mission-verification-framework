@@ -67,9 +67,9 @@ class ComparisonTest < Minitest::Test
 
   private
 
-  # The cells of each plan's row in data/model-comparison.md.
+  # The cells of each plan's row in docs/model-comparison.md.
   def table
-    rows = File.readlines('../data/model-comparison.md').grep(/^\| operation_/)
+    rows = File.readlines('../docs/model-comparison.md').grep(/^\| operation_/)
     rows.map { |row| row.split('|').map(&:strip).drop(1) }
   end
 end

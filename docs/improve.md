@@ -2,4 +2,3 @@
 
 Leftovers from /improve, so the next run can start here instead of re-auditing. Each line is stamped with the commit it was found at; a run deletes a line once its files have changed or it has acted on it.
 
-- 2026-11-18 | 84f562e | data/model-comparison.md | Generate the comparison table instead of editing it by hand - every cell has a source: the "point of failure" mark in the plan, the first row per plan in `data/model-results.csv` (rounded to four places), the executive's output, and "Agree" from the last two. A script of about 30 lines with a `just` recipe would rewrite the table rows (and the "agree on all 58 plans" sentence), replace the "Edit by hand" line in `CLAUDE.md`, and let the table tests in `mission-executive/test/comparison_test.rb` shrink to one "file is up to date" test or none; check that `CLAUDE.md` still says "Edit by hand".

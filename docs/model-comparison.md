@@ -10,9 +10,9 @@ Model and executive agree on all 58 plans.
 - **Executive says**: the output of `mission-executive/mission.rb`, which only checks that actions complete.
 - **Agree**: compares "PRISM: actions complete" with the executive, since that is the one question both answer.
 
-Every PRISM result, including the two extra properties of `operation_5b`, is in [model-results.csv](model-results.csv).
+Every PRISM result, including the two extra properties of `operation_5b`, is in [model-results.csv](../data/model-results.csv).
 
-Every state a model can reach and every step between them is in [model-states](model-states): the `.sta` file lists the states and the `.tra` file lists the transitions as "from, to, probability". They show where a model deadlocks. `just states` regenerates them.
+Every state a model can reach and every step between them is in [model-states](../data/model-states): the `.sta` file lists the states and the `.tra` file lists the transitions as "from, to, probability". They show where a model deadlocks. `just states` regenerates them.
 
 | Plan | YAML mark | PRISM: mission succeeds | PRISM: actions complete | Executive says | Agree |
 | --- | --- | --- | --- | --- | --- |
