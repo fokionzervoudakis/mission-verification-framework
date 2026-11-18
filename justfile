@@ -7,10 +7,16 @@ default:
 
 # Install dependencies
 [group('setup')]
-install:
+install: githooks
     @brew install ruby
     @brew install swi-prolog
+    @brew install gitleaks
     @bundle install
+
+# Install Git hooks
+[group('setup')]
+githooks:
+    @git config core.hooksPath hooks
 
 # Update dependencies
 [group('setup')]
