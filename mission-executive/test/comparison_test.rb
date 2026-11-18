@@ -43,12 +43,33 @@ class ComparisonTest < Minitest::Test
 
   def test_comparison_table_is_up_to_date
     output, = Open3.capture2('./mission.rb')
-    table = File.readlines('../data/model-comparison.md').grep(/^\| operation_/)
-    rows = table.map { |row| row.split('|').map(&:strip) }
-    executive = rows.to_h { |row| row.values_at(1, 5) }
-    disagreeing = rows.select { |row| row[6] == 'no' }.map { |row| row[1] }
+    executive = table.to_h { |row| row.values_at(0, 4) }
+    disagreeing = table.select { |row| row[5] == 'no' }.map(&:first)
 
     assert_equal output.scan(/executing (\w+)\.\.\.\n  (.*)/).to_h, executive
     assert_empty disagreeing
+  end
+
+  # The table is edited by hand; its other columns come from the plans and
+  # from the first property of each model in data/model-results.csv.
+  def test_comparison_table_matches_the_plans_and_prism_results
+    results = File.read('../data/model-results.csv').scan(/^(\w+),".*?",([\d.]+),([\d.]*),/).uniq(&:first)
+    expected = results.map do |operation, succeeds, complete|
+      mark = File.read("operations/#{operation}.yaml").include?('point of failure') ? 'point of failure' : ''
+      [operation, mark, succeeds.to_f.round(4).to_s, complete.to_f.round(4).to_s]
+    end
+
+    assert_equal(expected, table.map { |row| row.first(4) })
+    table.each do |row|
+      assert_equal (row[3] == '1.0') == (row[4] == 'all actions completed') ? 'yes' : 'no', row[5], row[0]
+    end
+  end
+
+  private
+
+  # The cells of each plan's row in data/model-comparison.md.
+  def table
+    rows = File.readlines('../data/model-comparison.md').grep(/^\| operation_/)
+    rows.map { |row| row.split('|').map(&:strip).drop(1) }
   end
 end
