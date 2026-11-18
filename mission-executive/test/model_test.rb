@@ -57,6 +57,17 @@ class ModelTest < Minitest::Test
     end
   end
 
+  # just verify writes one row per property; a property changed since the last
+  # run shows up here. A changed model does not.
+  def test_prism_results_cover_the_properties_of_every_model
+    properties = Dir['../models/*/*.pctl'].flat_map do |pctl|
+      File.readlines(pctl, chomp: true).map { |property| [File.basename(pctl, '.pctl'), property] }
+    end
+    rows = File.read('../data/model-results.csv').scan(/^(\w+),"(.*?)",/)
+
+    assert_empty (properties - rows) + (rows - properties)
+  end
+
   private
 
   # The guard, as sorted conjuncts, of each command that counts an action down.
