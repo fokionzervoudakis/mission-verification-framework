@@ -57,4 +57,47 @@ class PlanTest < Minitest::Test
       assert_equal limit.to_i, schema.dig(type, 'sequence', 0, 'mapping', 'endurance', 'range', 'max')
     end
   end
+
+  # The ontology properties that repeat a plan, by the plan key they repeat.
+  PROPERTIES = { 'actions' => 'hasAction', 'preconditions' => 'hasPrecondition',
+                 'concurrencies' => 'isConcurrentWith' }.freeze
+
+  # The ontology of a mission names each asset and action after its type and
+  # id in the plan. Some ontology files have no plan of their own.
+  Dir['../ontology/operation_*.owl'].each do |file|
+    operation = File.basename(file, '.owl')
+    next unless File.exist?("operations/#{operation}.yaml")
+
+    define_method("test_#{operation}_ontology_matches_the_plan") do
+      assert_equal plan_facts(operation).sort, ontology_facts(operation).sort
+    end
+  end
+
+  private
+
+  def plan_facts(operation)
+    plan = YAML.safe_load_file("operations/#{operation}.yaml")
+    named = ->(types) { types.flat_map { |type, items| items.map { |item| ["#{type}#{item.fetch('id')}", item] } } }
+    actions = named[plan.fetch('Action')].to_h { |name, action| [action.fetch('id'), name] }
+
+    (named[plan.fetch('Action')] + named[plan.fetch('Asset')]).flat_map do |name, item|
+      [name] + PROPERTIES.flat_map do |key, property|
+        item.fetch(key, []).map { |id| "#{property} #{name} #{actions.fetch(id)}" }
+      end
+    end
+  end
+
+  # A mission ontology adds to the ones it imports.
+  def ontology_facts(operation)
+    source = File.read("../ontology/#{operation}.owl")
+    schema = YAML.safe_load_file('operations/schema.yaml').fetch('mapping')
+    types = schema.values.flat_map { |kind| kind.fetch('mapping').keys }
+    individual = '<NamedIndividual IRI="[^"]*#(\w+)"/>'
+    individuals = source.scan(%r{<Class IRI="[^"]*#(\w+)"/>\s*#{individual}})
+    assertions = source.scan(%r{<ObjectProperty IRI="[^"]*#(\w+)"/>\s*#{individual}\s*#{individual}})
+
+    individuals.filter_map { |type, name| name if types.include?(type) } +
+      assertions.filter_map { |assertion| assertion.join(' ') if PROPERTIES.value?(assertion.first) } +
+      source.scan(%r{<Import>.*/(operation_\w+)\.owl</Import>}).flatten.flat_map { |import| ontology_facts(import) }
+  end
 end
