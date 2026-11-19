@@ -10,7 +10,7 @@ default:
 install: githooks
     @brew install ruby
     @brew install swi-prolog
-    @brew install gitleaks
+    @brew install betterleaks
     @bundle install
 
 # Install Git hooks
