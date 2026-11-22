@@ -57,6 +57,24 @@ class ModelTest < Minitest::Test
     end
   end
 
+  Dir['operations/operation_*.yaml'].each do |file|
+    operation = File.basename(file, '.yaml')
+
+    define_method("test_#{operation}_counters_start_from_their_constants") do
+      model = expand(File.read(Dir["../models/*/#{operation}.pm"].fetch(0)))
+      constants = planned(YAML.safe_load_file(file)).keys.grep(/^max_/)
+
+      assert_equal constants.map { |constant| [constant.delete_prefix('max_'), constant, constant] }.sort,
+                   model.scan(/^ *([de]\d+) *: *\[0\.\.(\w+)\] *init +(\w+);/).sort
+    end
+
+    define_method("test_#{operation}_modules_are_named_after_the_plan") do
+      model = expand(File.read(Dir["../models/*/#{operation}.pm"].fetch(0)))
+
+      assert_empty module_names(YAML.safe_load_file(file)) - model.scan(/^module (\w+)/).flatten
+    end
+  end
+
   # just verify writes one row per property; a property changed since the last
   # run shows up here. A changed model does not.
   def test_prism_results_cover_the_properties_of_every_model
@@ -106,6 +124,11 @@ class ModelTest < Minitest::Test
     end
 
     actions.merge(assets.to_h)
+  end
+
+  # A model names the module of each action and asset after its type and id.
+  def module_names(plan)
+    plan.values.flat_map { |types| types.flat_map { |type, list| list.map { |item| "#{type}#{item['id']}" } } }
   end
 
   def primary_assets(classification)
