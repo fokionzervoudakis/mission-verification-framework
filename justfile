@@ -49,11 +49,14 @@ lint:
 [group('dev')]
 run: validate execute generate classify parse
 
+# kwalify exits 0 for a plan that breaks the schema
 # Validate mission plans
 [group('dev')]
-validate:
+validate plan="mission-executive/operations/operation_*":
     @echo "{{RED}}{{BOLD}}Validating mission plans...{{RESET}}"
-    @cd mission-executive/operations/ && bundle exec kwalify -lf schema.yaml operation_*
+    @output=$(bundle exec kwalify -lf mission-executive/operations/schema.yaml {{plan}}) && \
+        printf "%s\n" "$output" && \
+        ! printf "%s\n" "$output" | grep -q INVALID
 
 # Execute individual mission plans
 [group('dev')]

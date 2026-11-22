@@ -10,10 +10,11 @@ cd uav-missions/
 just install
 ```
 
-Validate mission plans.
+Validate all mission plans, or one plan given by its path from the repository root. The second command checks a plan that is invalid on purpose, so it reports the error and fails.
 
 ```bash
 just validate
+just validate mission-executive/test/invalid_plan.yaml
 ```
 
 Execute individual mission plans. Use the optional parameter ```filter``` to output the execution stack of each method call to the standard output stream.

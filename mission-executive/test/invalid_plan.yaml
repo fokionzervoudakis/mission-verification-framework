@@ -1,0 +1,9 @@
+# Breaks the schema on purpose: a duration must be at least 1.
+Action:
+  HoverAction:
+    - id: 1
+      duration: 0
+Asset:
+  ARDrone:
+    - id: 1
+      actions: [1]
