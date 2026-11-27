@@ -8,10 +8,6 @@ class ModelTest < Minitest::Test
 
   ENDURANCES = YAML.safe_load_file('operations/asset_data.yaml').transform_values { |asset| asset.fetch('endurance') }
 
-  # Preconditions a model enforces without a guard: the shared step cannot
-  # fire until the leading action is over.
-  UNGUARDED = %w[operation_2g operation_2h operation_2i].to_h { |operation| [operation, { 4 => [1] }] }.freeze
-
   Dir['operations/operation_*.yaml'].each do |file|
     operation = File.basename(file, '.yaml')
 
@@ -23,7 +19,7 @@ class ModelTest < Minitest::Test
         guards = guards(model, action['id'])
 
         refute_empty guards
-        guards.each { |guard| assert_equal planned_guard(plan, action, UNGUARDED.fetch(operation, {})), guard }
+        guards.each { |guard| assert_equal planned_guard(plan, action, leading(operation)), guard }
       end
     end
 
@@ -94,13 +90,24 @@ class ModelTest < Minitest::Test
   end
 
   # The guard a plan calls for: the action's preconditions are over, the
-  # action is not, and its owner has endurance left.
-  def planned_guard(plan, action, unguarded)
+  # action is not, and its owner has endurance left. A leading subject runs
+  # on its own step, so an action of another asset waits for it through the
+  # shared step rather than a guard.
+  def planned_guard(plan, action, leading)
     id = action['id']
-    owner = plan.fetch('Asset').values.flatten.find { |asset| asset.fetch('actions', []).include?(id) }
-    preconditions = action.fetch('preconditions', []) - unguarded.fetch(id, [])
+    assets = plan.fetch('Asset').values.flatten
+    owner = ->(action_id) { assets.find { |asset| asset.fetch('actions', []).include?(action_id) } }
+    preconditions = action.fetch('preconditions', []).reject do |precondition|
+      leading.include?(precondition) && owner[precondition] != owner[id]
+    end
 
-    [*preconditions.map { |precondition| "d#{precondition}=0" }, "d#{id}>0", "e#{owner.fetch('id')}>0"].sort
+    [*preconditions.map { |precondition| "d#{precondition}=0" }, "d#{id}>0", "e#{owner[id].fetch('id')}>0"].sort
+  end
+
+  # The ids of the actions a classification marks as leading subjects.
+  def leading(operation)
+    actions = YAML.safe_load_file("classifications/#{operation}.yaml").fetch('Action').values.flatten
+    actions.select { |action| action['type'] == 'leading_subject' }.map { |action| action.fetch('id') }
   end
 
   # The ids of the actions a plan marks as a point of failure. The mark is a
