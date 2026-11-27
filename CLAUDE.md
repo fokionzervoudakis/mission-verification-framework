@@ -22,8 +22,9 @@ A research project that verifies UAV mission plans. Each mission exists in sever
 - **Executive and model**: which actions are left unfinished.
 - **Ontology and plan**: for the missions with an ontology file, the actions, owning asset, preconditions and lidar concurrency.
 - **Ontology and the rest**: the endurance limit of each asset type (`asset_data.yaml` and the schema), vulnerability and risk threshold (classification and model), interval calibration factors and freeway speed probabilities (`operation_5b` model), and the classes behind the Prolog rules.
+- **Repo and thesis**: behaviour and PRISM results.
 
-Known exceptions are in `docs/improve.md`.
+What is not a defect is listed at the end of this file.
 
 ## Rules
 
@@ -35,7 +36,7 @@ Known exceptions are in `docs/improve.md`.
 
 ## Tests are not enough
 
-`just test` does not check the ontology (apart from endurance limits, vulnerabilities, risk thresholds, freeway sections and its agreement with the plans) or generator output that goes missing. Check these by reading the files.
+`just test` checks every agreement above except the thesis and the full definitions of the ontology classes. Check those by reading the files.
 
 ## Regenerate after a change
 
@@ -46,7 +47,9 @@ Known exceptions are in `docs/improve.md`.
 | `data/mission-metrics.csv` | `just parse` |
 | `docs/model-comparison.md` | Edit by hand |
 
-## Intentional gaps
+## Not defects
 
 - `just generate` prints only parts of a model. Missing output is not a defect.
 - The executive does not model threat areas or sensing.
+- Token counts and ratios no longer match the thesis's Table 6.1.
+- The thesis appendix is out of date where the repo is stricter: the schema's minimum duration and the `operation_2u` guard.
