@@ -54,7 +54,39 @@ class OntologyTest < Minitest::Test
     end
   end
 
+  CLASSES = File.read('../ontology/classification_rules.owl')
+  RULES = Dir['../prolog-kb/*_rules.pl'].map { |file| File.read(file) }.join("\n")
+
+  # Each class of the classification ontology is a Prolog rule of the same
+  # name, and each rule marked as an OWL class is one of them.
+  def test_ontology_classes_match_the_prolog_rules
+    classes = CLASSES.scan(%r{<Declaration>\s*<Class IRI="#(\w+)"/>}).flatten.map { |name| rule_name(name) }
+    marked = RULES.scan(%r{^/\* OWL defined class \*/\n(\w+)\(}).flatten
+
+    assert_empty(classes.reject { |name| RULES.match?(/^#{name}\(\w+\) :-/) })
+    assert_empty marked - classes
+  end
+
+  # A class defined as the intersection of named classes is a rule that calls
+  # each of them, and nothing else, on its own argument.
+  def test_class_intersections_match_the_prolog_rules
+    named = '<Class IRI="#(\w+)"/>'
+    intersections = CLASSES.scan(%r{#{named}\s*<ObjectIntersectionOf>((?:\s*#{named})+)\s*</ObjectIntersectionOf>})
+
+    refute_empty intersections
+    intersections.each do |name, members|
+      variable, body = RULES.match(/^#{rule_name(name)}\((\w+)\) :-\n(.*?)\.$/m)&.captures
+      expected = members.scan(/#(\w+)/).flatten.map { |member| "#{rule_name(member)}(#{variable})" }
+
+      assert_equal expected.sort, body.to_s.split(',').map(&:strip).sort, name
+    end
+  end
+
   private
+
+  def rule_name(klass)
+    klass.gsub(/(?<!^)([A-Z])/, '_\1').downcase
+  end
 
   def vulnerable_assets(classification)
     YAML.safe_load_file(classification).fetch('Asset', {}).values.flatten.select { |asset| asset.key?('vulnerability') }
